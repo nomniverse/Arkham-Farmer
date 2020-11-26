@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/LiberationSans/LiberationSansRegular.tres" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/farmingTilesheetComplete.png" type="Texture" id=2]
+[ext_resource path="res://gui/Clock.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=2]
+size = 17
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 28
+font_data = ExtResource( 1 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 80, 80, 16, 16 )
+
+[node name="Clock" type="Panel"]
+margin_left = 848.0
+margin_top = 520.0
+margin_right = 1016.0
+margin_bottom = 592.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Date" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 94.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "Summer 00"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 32.0
+margin_right = 80.0
+margin_bottom = 64.0
+custom_fonts/font = SubResource( 3 )
+text = "00:00"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeIcon" type="TextureRect" parent="."]
+margin_left = 104.0
+margin_top = 8.0
+margin_right = 160.0
+margin_bottom = 64.0
+texture = SubResource( 4 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
