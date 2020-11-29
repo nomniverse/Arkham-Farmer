@@ -1,18 +1,36 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://actors/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://areas/Farm.tscn" type="PackedScene" id=2]
 [ext_resource path="res://effects/TimeCycle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://actors/Zombie.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/Chicken.tscn" type="PackedScene" id=5]
+[ext_resource path="res://actors/NPC.tscn" type="PackedScene" id=6]
 
 [node name="Game" type="Node"]
+
+[node name="TimeCycle" parent="." instance=ExtResource( 3 )]
 
 [node name="Farm" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 503, 284 )
-
-[node name="TimeCycle" parent="." instance=ExtResource( 3 )]
+position = Vector2( 518.667, 227.385 )
 
 [node name="Chicken" parent="." instance=ExtResource( 5 )]
-position = Vector2( 364.153, 296.07 )
+position = Vector2( 332.081, 296.07 )
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Zombie" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 152.911, 123.098 )
+
+[node name="Zombie2" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 493.611, 489.015 )
+
+[node name="Zombie3" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 818.64, 129.137 )
+
+[node name="NPCs" type="Node" parent="."]
+
+[node name="NPC" parent="NPCs" instance=ExtResource( 6 )]
+position = Vector2( 492.943, 238.231 )
