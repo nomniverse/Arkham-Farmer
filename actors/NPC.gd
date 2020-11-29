@@ -1,16 +1,14 @@
 extends Actor
 
 
-# Settings
-const PLACEMENT_TILE_RANGE = 2
-
+# Declare member variables here. Examples:
 var walk_speed = 200
 var run_speed = 400
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	rng.randomize()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,29 +16,9 @@ func _ready():
 #	pass
 
 
-func _input(event):
-	if event is InputEventKey:
-		if event.pressed:
-			if event.is_action_pressed("toggle_light"):
-				$Flashlight.enabled = not $Flashlight.enabled
-
-
-# Called every physics tick.
-func _physics_process(_delta):
-	velocity = Vector2.ZERO
+func _physics_process(delta):
+	#velocity = Vector2.ZERO
 	
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
-		
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
-		
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-		
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
-		
 	velocity = velocity.normalized() * walk_speed
 	velocity = move_and_slide(velocity)
 	
@@ -70,9 +48,9 @@ func _physics_process(_delta):
 		last_velocity = velocity
 
 
-func is_within_tile_reach(tile_position, player_tile_position):
-	return abs(tile_position.x - player_tile_position.x) <= PLACEMENT_TILE_RANGE and abs(tile_position.y - player_tile_position.y) <= PLACEMENT_TILE_RANGE
+func toggle_flashlight():
+	$Flashlight.enabled = not $Flashlight.enabled
 
 
-func is_within_position_reach(mouse_position):
-	return abs(global_position.x - mouse_position.x) <= PLACEMENT_TILE_RANGE * 16 and abs(global_position.y - mouse_position.y) <= PLACEMENT_TILE_RANGE * 16
+func _on_WanderTimer_timeout():
+	randomise_direction()
