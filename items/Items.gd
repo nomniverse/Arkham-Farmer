@@ -10,6 +10,7 @@ enum Item {
 	CORN_SEEDS = 5,
 	CORN = 6,
 	EGG = 7,
+	APPLE = 8,
 }
 
 var item_properties = {
@@ -44,5 +45,9 @@ var item_properties = {
 	Item.EGG: {
 		"name": "Egg",
 		"icon": Rect2(96, 32, 16, 16)
+	},
+	Item.APPLE: {
+		"name": "Apple",
+		"icon": Rect2(112, 64, 16, 16)
 	}
 }

@@ -20,8 +20,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Apocalypse Farming"
-run/main_scene="res://Game.tscn"
+config/name="Rebuild from Madness"
+run/main_scene="res://gui/menus/TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]

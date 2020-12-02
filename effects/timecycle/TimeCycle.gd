@@ -7,7 +7,7 @@ signal time_changed(time)
 
 
 # Declare member variables here. Examples:
-export(float) var day_real_time = 180 # Time in seconds for one full day
+export(float) var day_real_time = 1800 # Time in seconds for one full day
 
 # Modulate colours
 export(Color) var dawn_color = Color(0.86, 0.70, 0.70, 1.0)
@@ -67,7 +67,7 @@ func _ready():
 #	pass
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	_handle_time()
 	_handle_date()
 	

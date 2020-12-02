@@ -15,7 +15,10 @@ var player
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_tree().get_root().get_node("Game/TimeCycle").connect("day_changed", self, "_on_day_changed")
+	var error = get_tree().get_root().get_node("Game/TimeCycle").connect("day_changed", self, "_on_day_changed")
+	
+	if error:
+		print("Connect failed...")
 	
 	player = get_tree().get_root().get_node("Game/Player")
 

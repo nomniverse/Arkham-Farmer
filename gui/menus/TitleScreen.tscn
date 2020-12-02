@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/LiberationSans/LiberationSansRegular.tres" type="DynamicFontData" id=1]
+[ext_resource path="res://gui/menus/TitleScreen.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 72
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 1 )
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TitleLabel" type="Label" parent="."]
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 752.0
+margin_bottom = 114.0
+custom_fonts/font = SubResource( 1 )
+text = "Rebuild from Madness"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="Button" parent="."]
+margin_left = 32.0
+margin_top = 320.0
+margin_right = 256.0
+margin_bottom = 384.0
+custom_fonts/font = SubResource( 2 )
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="Button" parent="."]
+margin_left = 32.0
+margin_top = 408.0
+margin_right = 256.0
+margin_bottom = 472.0
+custom_fonts/font = SubResource( 2 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AuthorLabel" type="Label" parent="."]
+margin_left = 848.0
+margin_top = 560.0
+margin_right = 1008.0
+margin_bottom = 592.0
+custom_fonts/font = SubResource( 3 )
+text = "By omn0mn0m"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]

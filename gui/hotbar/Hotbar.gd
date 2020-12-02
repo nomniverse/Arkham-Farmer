@@ -142,3 +142,83 @@ func _check_for_hotbar_key(scancode):
 		get_child(active_slot).set_inactive()
 		active_slot = 9
 		get_child(active_slot).set_active()
+
+
+func _on_HotbarSlot_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			get_child(active_slot).set_inactive()
+			active_slot = 0
+			get_child(active_slot).set_active()
+
+
+func _on_HotbarSlot2_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			get_child(active_slot).set_inactive()
+			active_slot = 1
+			get_child(active_slot).set_active()
+
+
+func _on_HotbarSlot3_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			get_child(active_slot).set_inactive()
+			active_slot = 2
+			get_child(active_slot).set_active()
+
+
+func _on_HotbarSlot4_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			get_child(active_slot).set_inactive()
+			active_slot = 3
+			get_child(active_slot).set_active()
+
+
+func _on_HotbarSlot5_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			get_child(active_slot).set_inactive()
+			active_slot = 4
+			get_child(active_slot).set_active()
+
+
+func _on_HotbarSlot6_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			get_child(active_slot).set_inactive()
+			active_slot = 5
+			get_child(active_slot).set_active()
+
+
+func _on_HotbarSlot7_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			get_child(active_slot).set_inactive()
+			active_slot = 6
+			get_child(active_slot).set_active()
+
+
+func _on_HotbarSlot8_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			get_child(active_slot).set_inactive()
+			active_slot = 7
+			get_child(active_slot).set_active()
+
+
+func _on_HotbarSlot9_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			get_child(active_slot).set_inactive()
+			active_slot = 8
+			get_child(active_slot).set_active()
+
+
+func _on_HotbarSlot10_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			get_child(active_slot).set_inactive()
+			active_slot = 9
+			get_child(active_slot).set_active()
