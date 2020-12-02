@@ -78,5 +78,29 @@ func is_within_position_reach(mouse_position):
 	return abs(global_position.x - mouse_position.x) <= PLACEMENT_TILE_RANGE * 16 and abs(global_position.y - mouse_position.y) <= PLACEMENT_TILE_RANGE * 16
 
 
+func take_damage(amount):
+	.take_damage(amount)
+	set_health_bar(health)
+	
+	
+func use_stamina(amount):
+	var can_act = .use_stamina(amount)
+	set_stamina_bar(stamina)
+	
+	return can_act
+
+
 func die():
 	var _error = get_tree().change_scene("res://gui/menus/TitleScreen.tscn")
+
+
+func set_health_bar(value):
+	$HUD/StatusBars.health_bar.value = value
+
+
+func set_stamina_bar(value):
+	$HUD/StatusBars.stamina_bar.value = value
+
+
+func set_fear_bar(value):
+	$HUD/StatusBars.fear_bar.value = value

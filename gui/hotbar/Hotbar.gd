@@ -75,7 +75,9 @@ func add_item(id):
 		print("No empty slot found... Item lost.")
 	
 	
-func remove_item(item):
+func remove_item(id):
+	var item = Items.item_properties[id]
+	
 	for child in get_children():
 		if child.get_item()['name'] == item['name']:
 			child.set_quantity(child.get_quantity() - 1)
