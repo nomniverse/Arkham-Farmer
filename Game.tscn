@@ -39,10 +39,10 @@ position = Vector2( 492.943, 238.231 )
 [node name="Trees" type="Node" parent="."]
 
 [node name="AppleTree" parent="Trees" instance=ExtResource( 7 )]
-position = Vector2( 398.438, 132.548 )
+position = Vector2( 384, 128 )
 
 [node name="AppleTree2" parent="Trees" instance=ExtResource( 7 )]
-position = Vector2( 515.112, 131.754 )
+position = Vector2( 544, 128 )
 
 [node name="AppleTree3" parent="Trees" instance=ExtResource( 7 )]
-position = Vector2( 452.409, 56.3527 )
+position = Vector2( 496, 32 )
