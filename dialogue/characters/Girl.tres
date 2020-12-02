@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Resource
+
+export var display_name: String
+export (String, MULTILINE) var backstory: String
+export var expressions: Dictionary
+"
+
+[resource]
+script = SubResource( 1 )
+display_name = "Girl"
+backstory = "A girl you found while wandering the wilderness."
+expressions = {
+
+}

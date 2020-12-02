@@ -30,7 +30,7 @@ func _ready():
 #	pass
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if chase_target:
 		if not path:
 			return

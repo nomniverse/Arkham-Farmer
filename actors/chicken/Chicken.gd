@@ -9,12 +9,15 @@ var is_eating = false
 
 
 # Preloaded scenes
-var egg = preload("res://items/Egg.tscn")
+var egg = preload("res://items/egg/Egg.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_tree().get_root().get_node("Game/TimeCycle").connect("day_changed", self, "_on_day_changed")
+	var error = get_tree().get_root().get_node("Game/TimeCycle").connect("day_changed", self, "_on_day_changed")
+	
+	if error:
+		print("Connect failed...")
 	
 	rng.randomize()
 

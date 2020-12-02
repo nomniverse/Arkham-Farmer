@@ -1,0 +1,18 @@
+ 
+{
+    "0": {
+	"name": "Girl",
+	"expression": "neutral",
+	"text": "Thank you again for helping me."
+    },
+    "1": {
+	"name": "Player",
+	"expression": "neutral",
+	"text": "It's no problem."
+    },
+    "2": {
+	"name": "Girl",
+	"expression": "neutral",
+	"text": "One day, maybe I can help do my part for the settlement."
+    }
+}

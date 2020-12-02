@@ -17,8 +17,7 @@ func _ready():
 
 func _on_Egg_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:
-		if event is InputEventMouseButton and event.pressed:
-			# Sets tile based on placement range
-			if player.is_within_position_reach(get_global_mouse_position()):
-				get_tree().get_root().get_node("Game/Player/HUD/Hotbar").add_item(Items.Item.EGG)
-				self.queue_free()
+		# Sets tile based on placement range
+		if player.is_within_position_reach(get_global_mouse_position()):
+			get_tree().get_root().get_node("Game/Player/HUD/Hotbar").add_item(Items.Item.EGG)
+			self.queue_free()

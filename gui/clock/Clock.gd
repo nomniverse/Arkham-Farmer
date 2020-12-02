@@ -17,9 +17,15 @@ func _ready():
 	clock_season = get_tree().get_root().get_node("Game/TimeCycle").get_season()
 	clock_day = get_tree().get_root().get_node("Game/TimeCycle").day
 	
-	get_tree().get_root().get_node("Game/TimeCycle").connect("day_changed", self, "_on_day_changed")
-	get_tree().get_root().get_node("Game/TimeCycle").connect("season_changed", self, "_on_season_changed")
-	get_tree().get_root().get_node("Game/TimeCycle").connect("time_changed", self, "_on_time_changed")
+	# Connects the clock GUI to the game's day-night cycle
+	var error
+	
+	error = get_tree().get_root().get_node("Game/TimeCycle").connect("day_changed", self, "_on_day_changed")
+	error = get_tree().get_root().get_node("Game/TimeCycle").connect("season_changed", self, "_on_season_changed")
+	error = get_tree().get_root().get_node("Game/TimeCycle").connect("time_changed", self, "_on_time_changed")
+	
+	if error:
+		print("Connect failed...")
 
 
 func _on_day_changed(day):
