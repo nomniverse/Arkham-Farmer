@@ -15,7 +15,7 @@
 [node name="Farm" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 518.667, 227.385 )
+position = Vector2( 546.699, 316.819 )
 
 [node name="Chicken" parent="." instance=ExtResource( 5 )]
 position = Vector2( 332.081, 296.07 )
@@ -34,7 +34,7 @@ position = Vector2( 818.64, 129.137 )
 [node name="NPCs" type="Node" parent="."]
 
 [node name="NPC" parent="NPCs" instance=ExtResource( 6 )]
-position = Vector2( 492.943, 238.231 )
+position = Vector2( 653.281, 242.12 )
 
 [node name="Trees" type="Node" parent="."]
 

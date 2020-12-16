@@ -11,12 +11,13 @@ enum Item {
 	CORN = 6,
 	EGG = 7,
 	APPLE = 8,
+	REVOLVER = 9,
 }
 
 var item_properties = {
 	Item.NO_ITEM: {
 		"name": "",
-		"icon": Rect2(176, 176, 16, 16)
+		"icon": Rect2(192, 192, 16, 16)
 	},
 	Item.WATER_CAN: {
 		"name": "Watering Can",
@@ -49,5 +50,9 @@ var item_properties = {
 	Item.APPLE: {
 		"name": "Apple",
 		"icon": Rect2(112, 64, 16, 16)
+	},
+	Item.REVOLVER: {
+		"name": "Revolver",
+		"icon": Rect2(176, 176, 16, 16)
 	}
 }

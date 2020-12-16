@@ -16,11 +16,6 @@ func _ready():
 	player = get_tree().get_root().get_node("Game/Player")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func get_path_to_position(origin_position, target_position):
 	return $Navigation2D.get_simple_path(origin_position, target_position)
 
@@ -63,10 +58,10 @@ func _unhandled_input(event):
 							var shine = shine_effect.instance()
 							shine.global_position = $FarmBackground.map_to_world(tile_pos) + Vector2(8, 8)
 							shine.play()
-							get_parent().add_child(shine)
+							$Crops.add_child(shine)
 				elif player.get_node("HUD/Hotbar").get_active_slot_item()['name'] == "Corn Seeds":
 					if $FarmBackground.get_cell(tile_pos.x, tile_pos.y) == 2:
 						var new_corn = corn.instance()
 						new_corn.global_position = $FarmBackground.map_to_world(tile_pos) + Vector2(8, 4)
-						get_parent().add_child(new_corn)
+						$Crops.add_child(new_corn)
 						player.get_node("HUD/Hotbar").remove_item(Items.Item.CORN_SEEDS)

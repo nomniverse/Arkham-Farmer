@@ -20,6 +20,7 @@ func _ready():
 	add_item(Items.Item.AXE)
 	add_item(Items.Item.CORN_SEEDS)
 	add_item(Items.Item.LOG)
+	add_item(Items.Item.REVOLVER)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
