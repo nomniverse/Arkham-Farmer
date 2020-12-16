@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://gui/statusbars/StatusBars.gd" type="Script" id=1]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.494118, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0.494118, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0, 0.494118, 1 )
+
+[node name="StatusBars" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 544.0
+margin_right = -832.0
+margin_bottom = -8.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+margin_right = 184.0
+margin_bottom = 16.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 4 )
+value = 100.0
+rounded = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HealthBar"]
+margin_left = 8.0
+margin_right = 64.0
+margin_bottom = 16.0
+text = "Health"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaminaBar" type="ProgressBar" parent="."]
+margin_top = 16.0
+margin_right = 184.0
+margin_bottom = 32.0
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 4 )
+value = 100.0
+rounded = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="StaminaBar"]
+margin_left = 8.0
+margin_right = 64.0
+margin_bottom = 16.0
+text = "Stamina"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FearBar" type="ProgressBar" parent="."]
+margin_top = 32.0
+margin_right = 184.0
+margin_bottom = 48.0
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+value = 25.0
+rounded = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="FearBar"]
+margin_left = 8.0
+margin_right = 64.0
+margin_bottom = 16.0
+text = "Fear"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
