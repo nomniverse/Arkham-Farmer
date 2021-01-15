@@ -1,7 +1,7 @@
 extends Node
 
 
-enum Item {
+enum {
 	NO_ITEM = 0,
 	WATER_CAN = 1,
 	SHOVEL = 2,
@@ -14,45 +14,66 @@ enum Item {
 	REVOLVER = 9,
 }
 
+enum ItemType {
+	NULL,
+	BLOCK,
+	ITEM,
+	TOOL,
+	RANGED_WEAPON,
+	MELEE_WEAPON,
+	CROP,
+	FOOD
+}
+
 var item_properties = {
-	Item.NO_ITEM: {
+	NO_ITEM: {
 		"name": "",
-		"icon": Rect2(192, 192, 16, 16)
+		"icon": Rect2(192, 192, 16, 16),
+		"item_type": ItemType.NULL
 	},
-	Item.WATER_CAN: {
+	WATER_CAN: {
 		"name": "Watering Can",
-		"icon": Rect2(112, 80, 16, 16)
+		"icon": Rect2(112, 80, 16, 16),
+		"item_type": ItemType.TOOL
 	},
-	Item.SHOVEL: {
+	SHOVEL: {
 		"name": "Shovel",
-		"icon": Rect2(128, 80, 16, 16)
+		"icon": Rect2(128, 80, 16, 16),
+		"item_type": ItemType.TOOL
 	},
-	Item.AXE: {
+	AXE: {
 		"name": "Axe",
-		"icon": Rect2(144, 80, 16, 16)
+		"icon": Rect2(144, 80, 16, 16),
+		"item_type": ItemType.TOOL
 	},
-	Item.LOG: {
+	LOG: {
 		"name": "Log",
-		"icon": Rect2(160, 176, 16, 16)
+		"icon": Rect2(160, 176, 16, 16),
+		"item_type": ItemType.BLOCK
 	},
-	Item.CORN_SEEDS: {
+	CORN_SEEDS: {
 		"name": "Corn Seeds",
-		"icon": Rect2(96, 64, 16, 16)
+		"icon": Rect2(96, 64, 16, 16),
+		"item_type": ItemType.CROP
 	},
-	Item.CORN: {
+	CORN: {
 		"name": "Corn",
-		"icon": Rect2(32, 64, 16, 16)
+		"icon": Rect2(32, 64, 16, 16),
+		"item_type": ItemType.FOOD
 	},
-	Item.EGG: {
+	EGG: {
 		"name": "Egg",
-		"icon": Rect2(96, 32, 16, 16)
+		"icon": Rect2(96, 32, 16, 16),
+		"item_type": ItemType.ITEM
 	},
-	Item.APPLE: {
+	APPLE: {
 		"name": "Apple",
-		"icon": Rect2(112, 64, 16, 16)
+		"icon": Rect2(112, 64, 16, 16),
+		"item_type": ItemType.FOOD
 	},
-	Item.REVOLVER: {
+	REVOLVER: {
 		"name": "Revolver",
-		"icon": Rect2(176, 176, 16, 16)
+		"icon": Rect2(176, 176, 16, 16),
+		"item_type": ItemType.RANGED_WEAPON
 	}
 }

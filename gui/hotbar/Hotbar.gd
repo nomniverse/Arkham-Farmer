@@ -15,12 +15,12 @@ func _ready():
 	
 	# Preloads inventory with items
 	# TODO Read inventory from save file
-	add_item(Items.Item.WATER_CAN)
-	add_item(Items.Item.SHOVEL)
-	add_item(Items.Item.AXE)
-	add_item(Items.Item.CORN_SEEDS)
-	add_item(Items.Item.LOG)
-	add_item(Items.Item.REVOLVER)
+	add_item(Items.WATER_CAN)
+	add_item(Items.SHOVEL)
+	add_item(Items.AXE)
+	add_item(Items.CORN_SEEDS)
+	add_item(Items.LOG)
+	add_item(Items.REVOLVER)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,9 +62,9 @@ func add_item(id):
 	var i = 0
 	
 	for child in get_children():
-		if child.get_item()['name'] == "" and empty_slot == -1:
+		if child.get_item()['item_id'] == Items.NO_ITEM and empty_slot == -1:
 			empty_slot = i
-		elif child.get_item()['name'] == Items.item_properties[id]['name']:
+		elif child.get_item()['item_id'] == id:
 			child.set_quantity(child.get_quantity() + 1)
 			return
 			
@@ -77,13 +77,11 @@ func add_item(id):
 	
 	
 func remove_item(id):
-	var item = Items.item_properties[id]
-	
 	for child in get_children():
-		if child.get_item()['name'] == item['name']:
+		if child.get_item()['item_id'] == id:
 			child.set_quantity(child.get_quantity() - 1)
 			return
-			
+	
 	print("Item not found...")
 	
 	
