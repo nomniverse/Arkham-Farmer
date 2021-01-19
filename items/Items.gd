@@ -1,6 +1,5 @@
 extends Node
 
-
 enum {
 	NO_ITEM = 0,
 	WATER_CAN = 1,
