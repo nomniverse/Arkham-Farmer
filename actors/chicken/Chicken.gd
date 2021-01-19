@@ -9,7 +9,7 @@ var is_eating = false
 
 
 # Preloaded scenes
-var egg = preload("res://items/egg/Egg.tscn")
+var pickup = preload("res://items/Pickup.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -60,6 +60,7 @@ func _on_DirectionTimer_timeout():
 
 
 func _on_day_changed(_day):
-	var new_egg = egg.instance()
+	var new_egg = pickup.instance()
 	new_egg.position = position
+	new_egg.set_item(Items.EGG)
 	get_parent().add_child(new_egg)
