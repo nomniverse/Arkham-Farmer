@@ -33,8 +33,17 @@ func _on_Pickup_input_event(viewport, event, shape_idx):
 		# Sets tile based on placement range
 		if player.is_within_position_reach(get_global_mouse_position()):
 			get_tree().get_root().get_node("Game/Player/HUD/Hotbar").add_item(item['item_id'])
+			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 			self.queue_free()
 
 
 func _on_Pickup_body_entered(body):
 	pass # Replace with function body.
+
+
+func _on_Pickup_mouse_entered():
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+
+
+func _on_Pickup_mouse_exited():
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)

@@ -62,8 +62,12 @@ func empty():
 # Highlights slot as active slot
 func set_active():
 	self_modulate = Color(1, 0, 0, 1)
+	
+	if item['properties']['item_type'] == Items.ItemType.RANGED_WEAPON:
+		Input.set_default_cursor_shape(Input.CURSOR_CROSS)
 
 
 # Unhighlights slot as active slot
 func set_inactive():
 	self_modulate = Color(1, 1, 1, 1)
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
