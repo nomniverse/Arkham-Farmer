@@ -1,15 +1,15 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://assets/farmingTilesheetComplete.png" type="Texture" id=1]
+[ext_resource path="res://assets/light.png" type="Texture" id=1]
 [ext_resource path="res://actors/player/Player.gd" type="Script" id=2]
 [ext_resource path="res://gui/hotbar/Hotbar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://gui/clock/Clock.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/light.png" type="Texture" id=5]
+[ext_resource path="res://assets/Farming and Mining/Citizens.png" type="Texture" id=5]
 [ext_resource path="res://dialogue/DialogueBox.tscn" type="PackedScene" id=6]
 [ext_resource path="res://gui/statusbars/StatusBars.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.02141, 6.54711 )
+extents = Vector2( 7, 9.5 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle_down"
@@ -115,12 +115,14 @@ z_index = 1
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-vframes = 13
-hframes = 13
+texture = ExtResource( 5 )
+flip_h = true
+vframes = 3
+hframes = 8
+frame = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 0.52556 )
+position = Vector2( 0, -0.5 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -148,7 +150,7 @@ visible = false
 
 [node name="Flashlight" type="Light2D" parent="."]
 enabled = false
-texture = ExtResource( 5 )
+texture = ExtResource( 1 )
 texture_scale = 0.2
 energy = 0.6
 shadow_enabled = true

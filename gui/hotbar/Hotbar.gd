@@ -16,11 +16,15 @@ func _ready():
 	# Preloads inventory with items
 	# TODO Read inventory from save file
 	add_item(Items.WATER_CAN)
-	add_item(Items.SHOVEL)
+	add_item(Items.PICKAXE)
 	add_item(Items.AXE)
+	add_item(Items.HOE)
 	add_item(Items.CORN_SEEDS)
 	add_item(Items.LOG)
 	add_item(Items.REVOLVER)
+	
+	for i in range(64):
+		add_item(Items.FENCE)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

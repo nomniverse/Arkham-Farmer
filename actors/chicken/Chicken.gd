@@ -33,26 +33,10 @@ func _physics_process(_delta):
 		velocity = velocity.normalized() * walk_speed
 		velocity = move_and_slide(velocity)
 		
-		if velocity.y == 0 and velocity.x == 0:
-			$AnimationPlayer.play("idle")
-		else:
-			$AnimationPlayer.play("walk")
-				
-			if velocity.x > 0:
-				$Sprite.flip_h = false
-			elif velocity.x < 0:
-				$Sprite.flip_h = true
-
-
-func _on_EatTimer_timeout():
-	is_eating = true
-	
-	$AnimationPlayer.play("eat")
-
-
-func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "eat":
-		is_eating = false
+		if velocity.x > 0:
+			$Sprite.flip_h = false
+		elif velocity.x < 0:
+			$Sprite.flip_h = true
 
 
 func _on_DirectionTimer_timeout():

@@ -44,24 +44,26 @@ func _unhandled_input(event):
 					if $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.AXE:
 						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.FOREGROUND] == 0:
 							farm.set_tile_at_position(get_global_mouse_position(), -1, farm.FOREGROUND)
-							$HUD/Hotbar.add_item(Items.LOG)
+							$HUD/Hotbar.add_item(Items.FENCE)
 					
 					# Background Interactions
-					if $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.SHOVEL:
-						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == 0:
+					if $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.HOE:
+						var background_tile = farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND]
+						
+						if "GRASS" in farm.background_tiles[background_tile]:
 							if use_stamina(1):
-								farm.set_tile_at_position(get_global_mouse_position(), 1, farm.BACKGROUND)
-						elif farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == 1:
+								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("DIRT"), farm.BACKGROUND)
+						elif farm.background_tiles[background_tile] == "DIRT":
 							if use_stamina(1):
-								farm.set_tile_at_position(get_global_mouse_position(), 2, farm.BACKGROUND)
+								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("TILLED_SOIL"), farm.BACKGROUND)
 					elif $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.AXE:
-						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == 2:
+						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == farm.background_tiles.find("TILLED_SOIL"):
 							if use_stamina(1):
-								farm.set_tile_at_position(get_global_mouse_position(), 1, farm.BACKGROUND)
+								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("DIRT"), farm.BACKGROUND)
 					elif $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.WATER_CAN:
-						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == 2:
+						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == farm.background_tiles.find("TILLED_SOIL"):
 							if use_stamina(1):
-								farm.place_shine(tile_pos)
+								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("WATERED_SOIL"), farm.BACKGROUND)
 			elif $HUD/Hotbar.get_active_slot_item()['properties']['item_type'] == Items.ItemType.BLOCK:
 				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
 				var player_tile_pos = farm.position_to_tile_position(global_position)
@@ -82,7 +84,7 @@ func _unhandled_input(event):
 				if is_within_tile_reach(tile_pos, player_tile_pos):
 					# Foreground Interactions
 					if $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.CORN_SEEDS:
-						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == 2:
+						if "SOIL" in farm.background_tiles[farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND]]:
 							farm.place_crop(tile_pos, "Corn")
 							$HUD/Hotbar.remove_item(Items.CORN_SEEDS)
 			elif $HUD/Hotbar.get_active_slot_item()['properties']['item_type'] == Items.ItemType.RANGED_WEAPON:
@@ -132,27 +134,32 @@ func _physics_process(_delta):
 	velocity = velocity.normalized() * walk_speed
 	velocity = move_and_slide(velocity)
 	
-	if velocity.y > 0:
-		$AnimationPlayer.play("move_down")
-	elif velocity.y < 0:
-		$AnimationPlayer.play("move_up")
-	elif velocity.x > 0:
-		$AnimationPlayer.play("move_horizontal")
-		$Sprite.flip_h = true
-	elif velocity.x < 0:
-		$AnimationPlayer.play("move_horizontal")
+	if velocity.x > 0:
 		$Sprite.flip_h = false
-	else:
-		if last_velocity.y > 0:
-			$AnimationPlayer.play("idle_down")
-		elif last_velocity.y < 0:
-			$AnimationPlayer.play("idle_up")
-		elif last_velocity.x > 0:
-			$Sprite.flip_h = true
-			$AnimationPlayer.play("idle_horizontal")
-		elif last_velocity.x < 0:
-			$Sprite.flip_h = false
-			$AnimationPlayer.play("idle_horizontal")
+	elif velocity.x < 0:
+		$Sprite.flip_h = true
+	
+#	if velocity.y > 0:
+#		$AnimationPlayer.play("move_down")
+#	elif velocity.y < 0:
+#		$AnimationPlayer.play("move_up")
+#	elif velocity.x > 0:
+#		$AnimationPlayer.play("move_horizontal")
+#		$Sprite.flip_h = true
+#	elif velocity.x < 0:
+#		$AnimationPlayer.play("move_horizontal")
+#		$Sprite.flip_h = false
+#	else:
+#		if last_velocity.y > 0:
+#			$AnimationPlayer.play("idle_down")
+#		elif last_velocity.y < 0:
+#			$AnimationPlayer.play("idle_up")
+#		elif last_velocity.x > 0:
+#			$Sprite.flip_h = true
+#			$AnimationPlayer.play("idle_horizontal")
+#		elif last_velocity.x < 0:
+#			$Sprite.flip_h = false
+#			$AnimationPlayer.play("idle_horizontal")
 	
 	if last_velocity != velocity:
 		last_velocity = velocity
