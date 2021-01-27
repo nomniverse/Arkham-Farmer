@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light.png-87539b10c4b4cebc046b6b91ffea6f69.stex"
+path="res://.import/RefinedMaterials.png-2d1f8e379af340393a4bc4fe0f40edd0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/light.png"
-dest_files=[ "res://.import/light.png-87539b10c4b4cebc046b6b91ffea6f69.stex" ]
+source_file="res://assets/Farming and Mining/RefinedMaterials.png"
+dest_files=[ "res://.import/RefinedMaterials.png-2d1f8e379af340393a4bc4fe0f40edd0.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light.png-87539b10c4b4cebc046b6b91ffea6f69.stex"
+path="res://.import/Citizens.png-cf60dfe1f5103e702115c1a5a1d14ba6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/light.png"
-dest_files=[ "res://.import/light.png-87539b10c4b4cebc046b6b91ffea6f69.stex" ]
+source_file="res://assets/Farming and Mining/Citizens.png"
+dest_files=[ "res://.import/Citizens.png-cf60dfe1f5103e702115c1a5a1d14ba6.stex" ]
 
 [params]
 

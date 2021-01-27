@@ -24,6 +24,7 @@ func set_item(item_id, amount=1):
 	item['item_id'] = item_id
 	item['properties'] = Items.item_properties[item_id]
 	
+	$Sprite.texture.atlas = item['properties']['texture_file']
 	$Sprite.texture.region = item['properties']['icon']
 	item['quantity'] = amount
 

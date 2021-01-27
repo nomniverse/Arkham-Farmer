@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light.png-87539b10c4b4cebc046b6b91ffea6f69.stex"
+path="res://.import/sun_moon.png-7fdd63e0735f97b3a3bd63a4c3af84d1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/light.png"
-dest_files=[ "res://.import/light.png-87539b10c4b4cebc046b6b91ffea6f69.stex" ]
+source_file="res://assets/sun_moon.png"
+dest_files=[ "res://.import/sun_moon.png-7fdd63e0735f97b3a3bd63a4c3af84d1.stex" ]
 
 [params]
 

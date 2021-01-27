@@ -2,8 +2,8 @@ extends Panel
 
 
 # Time of day icons
-const DAY_ICON = Rect2(96, 80, 16, 16)
-const NIGHT_ICON = Rect2(80, 80, 16, 16)
+const DAY_ICON = Rect2(16, 0, 16, 16)
+const NIGHT_ICON = Rect2(0, 0, 16, 16)
 
 
 # Clock info

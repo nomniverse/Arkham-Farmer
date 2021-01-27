@@ -18,6 +18,7 @@ func set_item(item_id, amount=1):
 	item['item_id'] = item_id
 	item['properties'] = Items.item_properties[item_id]
 	
+	$ItemIcon.texture.atlas = item['properties']['texture_file']
 	$ItemIcon.texture.region = item['properties']['icon']
 	set_quantity(amount)
 
@@ -38,12 +39,15 @@ func set_quantity(quantity):
 	else:
 		$ItemQuantity.text = ""
 		
-	if item['quantity'] == 0:
+	if item['quantity'] <= 0:
 		item = {
 			"item_id": Items.NO_ITEM,
 			"properties": Items.item_properties[Items.NO_ITEM],
 		}
 		
+		print(item)
+		
+		$ItemIcon.texture.atlas = item['properties']['texture_file']
 		$ItemIcon.texture.region = item['properties']["icon"]
 
 

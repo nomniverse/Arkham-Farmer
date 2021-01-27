@@ -6,7 +6,7 @@
 [ext_resource path="res://actors/zombie/Zombie.tscn" type="PackedScene" id=4]
 [ext_resource path="res://actors/chicken/Chicken.tscn" type="PackedScene" id=5]
 [ext_resource path="res://actors/NPC/NPC.tscn" type="PackedScene" id=6]
-[ext_resource path="res://plants/AppleTree.tscn" type="PackedScene" id=7]
+[ext_resource path="res://plants/Tree.tscn" type="PackedScene" id=7]
 
 [node name="Game" type="Node"]
 
@@ -23,10 +23,10 @@ position = Vector2( 332.081, 296.07 )
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Zombie" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 152.911, 123.098 )
+position = Vector2( 98.2228, 123.847 )
 
 [node name="Zombie2" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 493.611, 489.015 )
+position = Vector2( 483.872, 516.734 )
 
 [node name="Zombie3" parent="Enemies" instance=ExtResource( 4 )]
 position = Vector2( 818.64, 129.137 )
@@ -39,10 +39,10 @@ position = Vector2( 653.281, 242.12 )
 [node name="Trees" type="Node" parent="."]
 
 [node name="AppleTree" parent="Trees" instance=ExtResource( 7 )]
-position = Vector2( 384, 128 )
+position = Vector2( 392.241, 89.7932 )
 
 [node name="AppleTree2" parent="Trees" instance=ExtResource( 7 )]
-position = Vector2( 544, 128 )
+position = Vector2( 553.739, 83.7999 )
 
 [node name="AppleTree3" parent="Trees" instance=ExtResource( 7 )]
 position = Vector2( 496, 32 )

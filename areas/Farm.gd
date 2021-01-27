@@ -7,16 +7,23 @@ enum {
 	BACKGROUND
 }
 
-# Preloads
-var shine_effect = preload("res://effects/Shine.tscn")
+var background_tiles = []
+var foreground_tiles = []
 
 # Crops
-var corn = preload("res://plants/Corn.tscn")
+var plant = preload("res://plants/Plant.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	for tile_id in $FarmBackground.tile_set.get_tiles_ids():
+		background_tiles.append($FarmBackground.tile_set.tile_get_name(tile_id))
+	
+	for tile_id in $FarmForeground.tile_set.get_tiles_ids():
+		foreground_tiles.append($FarmForeground.tile_set.tile_get_name(tile_id))
+		
+	print(background_tiles)
+	print(foreground_tiles)
 
 
 func get_path_to_position(origin_position, target_position):
@@ -58,6 +65,11 @@ func set_tile_at_tile_position(position, tile, layer=FOREGROUND):
 func set_tile_at_position(position, tile, layer=FOREGROUND):
 	var tile_pos = $FarmBackground.world_to_map(position)
 	set_tile_at_tile_position(tile_pos, tile, layer)
+	
+	if layer == BACKGROUND:
+		$FarmBackground.update_bitmask_area(tile_pos)
+	elif layer == FOREGROUND:
+		$FarmForeground.update_bitmask_area(tile_pos)
 
 
 func find_tile_id_by_name(tile_name, layer=FOREGROUND):
@@ -69,18 +81,6 @@ func find_tile_id_by_name(tile_name, layer=FOREGROUND):
 
 func place_crop(tile_position, crop_name):
 	var new_crop
-	
-	if crop_name == "Corn":
-		new_crop = corn.instance()
-	else:
-		return
-		
-	new_crop.global_position = $FarmBackground.map_to_world(tile_position) + Vector2(8, 4)
+	new_crop = plant.instance()
+	new_crop.global_position = $FarmBackground.map_to_world(tile_position) + Vector2(16, 8)
 	$Crops.add_child(new_crop)
-
-
-func place_shine(tile_position):
-	var shine = shine_effect.instance()
-	shine.global_position = $FarmBackground.map_to_world(tile_position) + Vector2(8, 8)
-	shine.play()
-	$Crops.add_child(shine)

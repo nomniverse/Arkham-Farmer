@@ -1,15 +1,16 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/LiberationSans/LiberationSansRegular.tres" type="DynamicFontData" id=1]
-[ext_resource path="res://assets/farmingTilesheetComplete.png" type="Texture" id=2]
+[ext_resource path="res://assets/transparent_tile.png" type="Texture" id=2]
 [ext_resource path="res://gui/hotbar/HotbarSlot.gd" type="Script" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
 [sub_resource type="AtlasTexture" id=2]
 resource_local_to_scene = true
+flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 192, 192, 16, 16 )
+region = Rect2( 0, 320, 32, 32 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 14
@@ -27,11 +28,9 @@ __meta__ = {
 }
 
 [node name="ItemIcon" type="TextureRect" parent="."]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 32.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 24, 24 )
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 32, 32 )
 texture = SubResource( 2 )
 expand = true
 stretch_mode = 1
