@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/LiberationSans/LiberationSansRegular.tres" type="DynamicFontData" id=1]
-[ext_resource path="res://assets/farmingTilesheetComplete.png" type="Texture" id=2]
+[ext_resource path="res://assets/sun_moon.png" type="Texture" id=2]
 [ext_resource path="res://gui/clock/Clock.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
@@ -14,7 +14,7 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 2 )
-region = Rect2( 80, 80, 16, 16 )
+region = Rect2( 0, 0, 16, 16 )
 
 [node name="Clock" type="Panel"]
 margin_left = 880.0

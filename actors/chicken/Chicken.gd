@@ -9,7 +9,7 @@ var is_eating = false
 
 
 # Preloaded scenes
-var egg = preload("res://items/egg/Egg.tscn")
+var pickup = preload("res://items/Pickup/Pickup.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -33,26 +33,10 @@ func _physics_process(_delta):
 		velocity = velocity.normalized() * walk_speed
 		velocity = move_and_slide(velocity)
 		
-		if velocity.y == 0 and velocity.x == 0:
-			$AnimationPlayer.play("idle")
-		else:
-			$AnimationPlayer.play("walk")
-				
-			if velocity.x > 0:
-				$Sprite.flip_h = false
-			elif velocity.x < 0:
-				$Sprite.flip_h = true
-
-
-func _on_EatTimer_timeout():
-	is_eating = true
-	
-	$AnimationPlayer.play("eat")
-
-
-func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == "eat":
-		is_eating = false
+		if velocity.x > 0:
+			$Sprite.flip_h = false
+		elif velocity.x < 0:
+			$Sprite.flip_h = true
 
 
 func _on_DirectionTimer_timeout():
@@ -60,6 +44,7 @@ func _on_DirectionTimer_timeout():
 
 
 func _on_day_changed(_day):
-	var new_egg = egg.instance()
+	var new_egg = pickup.instance()
 	new_egg.position = position
+	new_egg.set_item(Items.EGG)
 	get_parent().add_child(new_egg)

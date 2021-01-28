@@ -7,10 +7,12 @@ const PLACEMENT_TILE_RANGE = 2
 var walk_speed = 200
 var run_speed = 400
 
+var farm
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	farm = get_tree().get_root().get_node("Game/Farm")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,6 +25,104 @@ func _input(event):
 		if event.pressed:
 			if event.is_action_pressed("toggle_light"):
 				$Flashlight.enabled = not $Flashlight.enabled
+			
+			if event.is_action_pressed("reload"):
+				if $HUD/Hotbar.get_active_slot_item()['properties']['item_type'] == Items.ItemType.RANGED_WEAPON:
+					var bullet_slot = $HUD/Hotbar.find_item_slot(Items.BULLET)
+
+					if bullet_slot:
+						var missing_bullets = $HUD/Hotbar.get_active_slot_item()['properties']['capacity'] - $HUD/Hotbar.get_active_slot_item()['uses']
+						print(missing_bullets)
+						if $HUD/Hotbar.get_item_at_slot(bullet_slot)['quantity'] >= missing_bullets:
+							$HUD/Hotbar.get_active_slot_item()['uses'] = $HUD/Hotbar.get_active_slot_item()['properties']['capacity']
+							$HUD/Hotbar.remove_item(Items.BULLET, missing_bullets)
+						else:
+							$HUD/Hotbar.get_active_slot_item()['uses'] += $HUD/Hotbar.get_item_at_slot(bullet_slot)['quantity']
+							$HUD/Hotbar.empty_slot(bullet_slot)
+
+
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			if $HUD/Hotbar.get_active_slot_item()['properties']['item_type'] == Items.ItemType.TOOL:
+				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
+				var player_tile_pos = farm.position_to_tile_position(global_position)
+				
+				# Sets tile based on placement range
+				if is_within_tile_reach(tile_pos, player_tile_pos):
+					# Foreground Interactions
+					if $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.AXE:
+						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.FOREGROUND] == 0:
+							farm.set_tile_at_position(get_global_mouse_position(), -1, farm.FOREGROUND)
+							$HUD/Hotbar.add_item(Items.FENCE)
+					
+					# Background Interactions
+					if $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.HOE:
+						var background_tile = farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND]
+						
+						if "GRASS" in farm.background_tiles[background_tile]:
+							if use_stamina(1):
+								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("DIRT"), farm.BACKGROUND)
+						elif farm.background_tiles[background_tile] == "DIRT":
+							if use_stamina(1):
+								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("TILLED_SOIL"), farm.BACKGROUND)
+					elif $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.AXE:
+						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == farm.background_tiles.find("TILLED_SOIL"):
+							if use_stamina(1):
+								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("DIRT"), farm.BACKGROUND)
+					elif $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.WATER_CAN:
+						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == farm.background_tiles.find("TILLED_SOIL"):
+							if use_stamina(1):
+								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("WATERED_SOIL"), farm.BACKGROUND)
+			elif $HUD/Hotbar.get_active_slot_item()['properties']['item_type'] == Items.ItemType.BLOCK:
+				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
+				var player_tile_pos = farm.position_to_tile_position(global_position)
+				
+				# Sets tile based on placement range
+				if is_within_tile_reach(tile_pos, player_tile_pos):
+					var block = $HUD/Hotbar.get_active_slot_item()
+					
+					# Foreground Interactions
+					if farm.get_all_tiles_at_tile_position(tile_pos)[farm.FOREGROUND] == -1:
+						farm.set_tile_at_position(get_global_mouse_position(), farm.find_tile_id_by_name(block['properties']['name']), farm.FOREGROUND)
+						$HUD/Hotbar.remove_item(block['item_id'])
+			elif $HUD/Hotbar.get_active_slot_item()['properties']['item_type'] == Items.ItemType.CROP:
+				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
+				var player_tile_pos = farm.position_to_tile_position(global_position)
+				
+				# Sets tile based on placement range
+				if is_within_tile_reach(tile_pos, player_tile_pos):
+					# Foreground Interactions
+					if $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.CORN_SEEDS:
+						if "SOIL" in farm.background_tiles[farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND]]:
+							farm.place_crop(tile_pos, "Corn")
+							$HUD/Hotbar.remove_item(Items.CORN_SEEDS)
+			elif $HUD/Hotbar.get_active_slot_item()['properties']['item_type'] == Items.ItemType.RANGED_WEAPON:
+				if $HUD/Hotbar.get_active_slot_item()['uses'] > 0:
+					$HUD/Hotbar.get_active_slot_item()['uses'] = $HUD/Hotbar.get_active_slot_item()['uses'] - 1
+					print($HUD/Hotbar.get_active_slot_item()['uses'])
+					
+					$BulletRayCast2D.rotation = get_angle_to(get_global_mouse_position())
+					$BulletRayCast2D.enabled = true
+					$BulletRayCast2D.force_raycast_update()
+					
+					var points = PoolVector2Array()
+					points.append(Vector2(0, 0))
+					
+					if $BulletRayCast2D.is_colliding():
+						points.append(to_local($BulletRayCast2D.get_collision_point()))
+						
+						if $BulletRayCast2D.get_collider().has_method("take_damage"):
+							$BulletRayCast2D.get_collider().take_damage(50)
+					else:
+						points.append($BulletRayCast2D.cast_to.rotated(get_angle_to(get_global_mouse_position())))
+						
+					$BulletTrace.points = points
+					$BulletTraceTimer.start()
+						
+					$BulletRayCast2D.enabled = false
+				else:
+					print("No ammo...")
 
 
 # Called every physics tick.
@@ -43,29 +143,11 @@ func _physics_process(_delta):
 		
 	velocity = velocity.normalized() * walk_speed
 	velocity = move_and_slide(velocity)
-	
-	if velocity.y > 0:
-		$AnimationPlayer.play("move_down")
-	elif velocity.y < 0:
-		$AnimationPlayer.play("move_up")
-	elif velocity.x > 0:
-		$AnimationPlayer.play("move_horizontal")
-		$Sprite.flip_h = true
-	elif velocity.x < 0:
-		$AnimationPlayer.play("move_horizontal")
-		$Sprite.flip_h = false
-	else:
-		if last_velocity.y > 0:
-			$AnimationPlayer.play("idle_down")
-		elif last_velocity.y < 0:
-			$AnimationPlayer.play("idle_up")
-		elif last_velocity.x > 0:
-			$Sprite.flip_h = true
-			$AnimationPlayer.play("idle_horizontal")
-		elif last_velocity.x < 0:
-			$Sprite.flip_h = false
-			$AnimationPlayer.play("idle_horizontal")
-	
+
+	# Flips sprite if mouse is on the left of player
+	# NOTE: does not maintain sprite orientation if mouse exactly at player position
+	$Sprite.flip_h = get_global_mouse_position().x < global_position.x
+
 	if last_velocity != velocity:
 		last_velocity = velocity
 
@@ -104,3 +186,7 @@ func set_stamina_bar(value):
 
 func set_fear_bar(value):
 	$HUD/StatusBars.fear_bar.value = value
+
+
+func _on_BulletTraceTimer_timeout():
+	$BulletTrace.clear_points()

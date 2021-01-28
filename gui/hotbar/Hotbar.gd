@@ -9,18 +9,26 @@ func get_active_slot_item():
 	return get_child(active_slot).item
 
 
+func get_item_at_slot(slot):
+	return get_child(slot).item
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_child(active_slot).set_active()
 	
 	# Preloads inventory with items
 	# TODO Read inventory from save file
-	add_item(Items.Item.WATER_CAN)
-	add_item(Items.Item.SHOVEL)
-	add_item(Items.Item.AXE)
-	add_item(Items.Item.CORN_SEEDS)
-	add_item(Items.Item.LOG)
-	add_item(Items.Item.REVOLVER)
+	add_item(Items.WATER_CAN)
+	add_item(Items.PICKAXE)
+	add_item(Items.AXE)
+	add_item(Items.HOE)
+	add_item(Items.CORN_SEEDS)
+	add_item(Items.LOG)
+	add_item(Items.REVOLVER)
+	add_item(Items.BULLET, 12)
+	
+	for i in range(64):
+		add_item(Items.FENCE)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,37 +64,44 @@ func _input(event):
 			_check_for_hotbar_key(event.scancode)
 
 
-func add_item(id):
+func add_item(id, quantity=1):
 	var empty_slot = -1
 	
 	var i = 0
 	
 	for child in get_children():
-		if child.get_item()['name'] == "" and empty_slot == -1:
+		if child.get_item()['item_id'] == Items.NO_ITEM and empty_slot == -1:
 			empty_slot = i
-		elif child.get_item()['name'] == Items.item_properties[id]['name']:
-			child.set_quantity(child.get_quantity() + 1)
+		elif child.get_item()['item_id'] == id:
+			child.set_quantity(child.get_quantity() + quantity)
 			return
 			
 		i += 1
 		
 	if empty_slot != -1:
 		get_children()[empty_slot].set_item(id)
+		get_children()[empty_slot].set_quantity(quantity)
 	else:
 		print("No empty slot found... Item lost.")
 	
 	
-func remove_item(id):
-	var item = Items.item_properties[id]
-	
+func remove_item(id, quantity=1):
 	for child in get_children():
-		if child.get_item()['name'] == item['name']:
-			child.set_quantity(child.get_quantity() - 1)
+		if child.get_item()['item_id'] == id:
+			child.set_quantity(child.get_quantity() - quantity)
 			return
-			
+	
 	print("Item not found...")
 	
+
+func find_item_slot(id):
+	for i in get_children().size():
+		if get_children()[i].get_item()['item_id'] == id:
+			return i
 	
+	return null
+
+
 func empty_slot(number):
 	get_child(number).empty()
 	

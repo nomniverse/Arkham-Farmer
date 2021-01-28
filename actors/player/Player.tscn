@@ -1,15 +1,20 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://assets/farmingTilesheetComplete.png" type="Texture" id=1]
+[ext_resource path="res://assets/light.png" type="Texture" id=1]
 [ext_resource path="res://actors/player/Player.gd" type="Script" id=2]
 [ext_resource path="res://gui/hotbar/Hotbar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://gui/clock/Clock.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/light.png" type="Texture" id=5]
+[ext_resource path="res://assets/Farming and Mining/Citizens.png" type="Texture" id=5]
 [ext_resource path="res://dialogue/DialogueBox.tscn" type="PackedScene" id=6]
 [ext_resource path="res://gui/statusbars/StatusBars.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/Farming and Mining/Tools.png" type="Texture" id=8]
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 32, 32 )
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.02141, 6.54711 )
+extents = Vector2( 7, 9.5 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle_down"
@@ -107,17 +112,27 @@ tracks/0/keys = {
 "values": [ 3, 4, 5 ]
 }
 
+[sub_resource type="CanvasItemMaterial" id=8]
+blend_mode = 1
+
 [node name="Player" type="KinematicBody2D"]
 z_index = 1
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-vframes = 13
-hframes = 13
+texture = ExtResource( 5 )
+flip_h = true
+vframes = 3
+hframes = 8
+frame = 17
+
+[node name="HandSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( -8, -8 )
+texture = SubResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 0.52556 )
+position = Vector2( 0, -0.5 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -145,10 +160,23 @@ visible = false
 
 [node name="Flashlight" type="Light2D" parent="."]
 enabled = false
-texture = ExtResource( 5 )
+texture = ExtResource( 1 )
 texture_scale = 0.2
 energy = 0.6
 shadow_enabled = true
 shadow_gradient_length = 1.3
 shadow_filter = 3
 shadow_filter_smooth = 11.1
+
+[node name="BulletRayCast2D" type="RayCast2D" parent="."]
+cast_to = Vector2( 100, 0 )
+
+[node name="BulletTrace" type="Line2D" parent="."]
+light_mask = 3
+material = SubResource( 8 )
+width = 2.0
+default_color = Color( 0.74902, 0.623529, 0.192157, 1 )
+
+[node name="BulletTraceTimer" type="Timer" parent="."]
+wait_time = 0.1
+[connection signal="timeout" from="BulletTraceTimer" to="." method="_on_BulletTraceTimer_timeout"]

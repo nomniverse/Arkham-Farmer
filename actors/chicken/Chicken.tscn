@@ -1,56 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/farmingTilesheetComplete.png" type="Texture" id=1]
+[ext_resource path="res://assets/Farming and Mining/Animals.png" type="Texture" id=1]
 [ext_resource path="res://actors/chicken/Chicken.gd" type="Script" id=2]
 
-
 [sub_resource type="CircleShape2D" id=1]
-radius = 6.53971
-
-[sub_resource type="Animation" id=2]
-resource_name = "eat"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 29, 30, 31, 30, 31 ]
-}
-
-[sub_resource type="Animation" id=3]
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 26 ]
-}
-
-[sub_resource type="Animation" id=4]
-length = 0.6
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 27, 28, 29 ]
-}
 
 [node name="Chicken" type="KinematicBody2D"]
 z_index = 1
@@ -58,26 +11,14 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-vframes = 13
+vframes = 4
 hframes = 13
-frame = 31
+frame = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.993248, 0.463516 )
 shape = SubResource( 1 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/eat = SubResource( 2 )
-anims/idle = SubResource( 3 )
-anims/walk = SubResource( 4 )
 
 [node name="DirectionTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
-
-[node name="EatTimer" type="Timer" parent="."]
-wait_time = 5.0
-autostart = true
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="DirectionTimer" to="." method="_on_DirectionTimer_timeout"]
-[connection signal="timeout" from="EatTimer" to="." method="_on_EatTimer_timeout"]
