@@ -45,8 +45,6 @@ func set_quantity(quantity):
 			"properties": Items.item_properties[Items.NO_ITEM],
 		}
 		
-		print(item)
-		
 		$ItemIcon.texture.atlas = item['properties']['texture_file']
 		$ItemIcon.texture.region = item['properties']["icon"]
 
