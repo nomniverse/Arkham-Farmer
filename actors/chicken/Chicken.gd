@@ -9,7 +9,7 @@ var is_eating = false
 
 
 # Preloaded scenes
-var pickup = preload("res://items/Pickup.tscn")
+var pickup = preload("res://items/Pickup/Pickup.tscn")
 
 
 # Called when the node enters the scene tree for the first time.

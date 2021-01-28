@@ -15,10 +15,10 @@
 [node name="Farm" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 546.699, 316.819 )
+position = Vector2( 512, 352 )
 
 [node name="Chicken" parent="." instance=ExtResource( 5 )]
-position = Vector2( 332.081, 296.07 )
+position = Vector2( 384, 352 )
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -29,20 +29,20 @@ position = Vector2( 98.2228, 123.847 )
 position = Vector2( 483.872, 516.734 )
 
 [node name="Zombie3" parent="Enemies" instance=ExtResource( 4 )]
-position = Vector2( 818.64, 129.137 )
+position = Vector2( 800, 64 )
 
 [node name="NPCs" type="Node" parent="."]
 
 [node name="NPC" parent="NPCs" instance=ExtResource( 6 )]
-position = Vector2( 653.281, 242.12 )
+position = Vector2( 448, 288 )
 
 [node name="Trees" type="Node" parent="."]
 
 [node name="AppleTree" parent="Trees" instance=ExtResource( 7 )]
-position = Vector2( 392.241, 89.7932 )
+position = Vector2( 352, 64 )
 
 [node name="AppleTree2" parent="Trees" instance=ExtResource( 7 )]
-position = Vector2( 553.739, 83.7999 )
+position = Vector2( 672, 64 )
 
 [node name="AppleTree3" parent="Trees" instance=ExtResource( 7 )]
-position = Vector2( 496, 32 )
+position = Vector2( 480, 16 )

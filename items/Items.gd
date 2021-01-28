@@ -12,18 +12,22 @@ enum {
 	EGG,
 	APPLE,
 	REVOLVER,
+	BULLET,
 	FENCE,
+	BOX,
 }
 
 enum ItemType {
 	NULL,
 	BLOCK,
+	CONTAINER,
 	ITEM,
 	TOOL,
 	RANGED_WEAPON,
+	AMMO,
 	MELEE_WEAPON,
 	CROP,
-	FOOD
+	FOOD,
 }
 
 var TRANSPARENT_TEXTURE_PATH = load("res://assets/transparent_tile.png")
@@ -33,6 +37,7 @@ var CLOTHING_TEXTURE_PATH = load("res://assets/Farming and Mining/ClothingArmor.
 var ENVIRONMENT_TEXTURE_PATH = load("res://assets/Farming and Mining/Environment.png")
 var FENCE_TEXTURE_PATH = load("res://assets/Farming and Mining/Fence.png")
 var FRUITS_VEG_SEED_TEXTURE_PATH = load("res://assets/Farming and Mining/FruitsVegSeed.png")
+var FURNITURE_TEXTURE_PATH = load("res://assets/Farming and Mining/Furniture.png")
 var HAIR_TEXTURE_PATH = load("res://assets/Farming and Mining/Hair.png")
 var MINERALS_TEXTURE_PATH = load("res://assets/Farming and Mining/Minerals.png")
 var REFINED_MATERIALS_TEXTURE_PATH = load("res://assets/Farming and Mining/RefinedMaterials.png")
@@ -104,12 +109,26 @@ var item_properties = {
 		"name": "Revolver",
 		"texture_file": TOOLS_TEXTURE_PATH,
 		"icon": Rect2(0, 320, 32, 32),
-		"item_type": ItemType.RANGED_WEAPON
+		"item_type": ItemType.RANGED_WEAPON,
+		"capacity": 6
+	},
+	BULLET: {
+		"name": "Bullet",
+		"texture_file": TOOLS_TEXTURE_PATH,
+		"icon": Rect2(0, 352, 32, 32),
+		"item_type": ItemType.AMMO
 	},
 	FENCE: {
 		"name": "Fence",
 		"texture_file": FENCE_TEXTURE_PATH,
 		"icon": Rect2(0, 96, 32, 32),
 		"item_type": ItemType.BLOCK
+	},
+	BOX: {
+		"name": "Box",
+		"texture_file": FURNITURE_TEXTURE_PATH,
+		"icon": Rect2(0, 0, 32, 32),
+		"item_type": ItemType.CONTAINER,
+		"empty_icon": Rect2(32, 0, 32, 32)
 	}
 }

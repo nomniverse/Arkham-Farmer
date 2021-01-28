@@ -28,7 +28,17 @@ func _input(event):
 			
 			if event.is_action_pressed("reload"):
 				if $HUD/Hotbar.get_active_slot_item()['properties']['item_type'] == Items.ItemType.RANGED_WEAPON:
-					$HUD/Hotbar.get_active_slot_item()['uses'] = 6
+					var bullet_slot = $HUD/Hotbar.find_item_slot(Items.BULLET)
+
+					if bullet_slot:
+						var missing_bullets = $HUD/Hotbar.get_active_slot_item()['properties']['capacity'] - $HUD/Hotbar.get_active_slot_item()['uses']
+						print(missing_bullets)
+						if $HUD/Hotbar.get_item_at_slot(bullet_slot)['quantity'] >= missing_bullets:
+							$HUD/Hotbar.get_active_slot_item()['uses'] = $HUD/Hotbar.get_active_slot_item()['properties']['capacity']
+							$HUD/Hotbar.remove_item(Items.BULLET, missing_bullets)
+						else:
+							$HUD/Hotbar.get_active_slot_item()['uses'] += $HUD/Hotbar.get_item_at_slot(bullet_slot)['quantity']
+							$HUD/Hotbar.empty_slot(bullet_slot)
 
 
 func _unhandled_input(event):
@@ -133,34 +143,11 @@ func _physics_process(_delta):
 		
 	velocity = velocity.normalized() * walk_speed
 	velocity = move_and_slide(velocity)
-	
-	if velocity.x > 0:
-		$Sprite.flip_h = false
-	elif velocity.x < 0:
-		$Sprite.flip_h = true
-	
-#	if velocity.y > 0:
-#		$AnimationPlayer.play("move_down")
-#	elif velocity.y < 0:
-#		$AnimationPlayer.play("move_up")
-#	elif velocity.x > 0:
-#		$AnimationPlayer.play("move_horizontal")
-#		$Sprite.flip_h = true
-#	elif velocity.x < 0:
-#		$AnimationPlayer.play("move_horizontal")
-#		$Sprite.flip_h = false
-#	else:
-#		if last_velocity.y > 0:
-#			$AnimationPlayer.play("idle_down")
-#		elif last_velocity.y < 0:
-#			$AnimationPlayer.play("idle_up")
-#		elif last_velocity.x > 0:
-#			$Sprite.flip_h = true
-#			$AnimationPlayer.play("idle_horizontal")
-#		elif last_velocity.x < 0:
-#			$Sprite.flip_h = false
-#			$AnimationPlayer.play("idle_horizontal")
-	
+
+	# Flips sprite if mouse is on the left of player
+	# NOTE: does not maintain sprite orientation if mouse exactly at player position
+	$Sprite.flip_h = get_global_mouse_position().x < global_position.x
+
 	if last_velocity != velocity:
 		last_velocity = velocity
 
