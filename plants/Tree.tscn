@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/Farming and Mining/Environment.png" type="Texture" id=1]
 [ext_resource path="res://plants/Tree.gd" type="Script" id=2]
+[ext_resource path="res://assets/Farming and Mining/FruitsVegSeed.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 16.0
@@ -11,19 +12,33 @@ height = 18.0
 input_pickable = true
 script = ExtResource( 2 )
 
-[node name="TreeTrunkSprite" type="Sprite" parent="."]
+[node name="TrunkSprite" type="Sprite" parent="."]
 position = Vector2( 0, 16 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 0, 32, 32, 32 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="LeavesSprite" type="Sprite" parent="."]
 position = Vector2( 0, -8 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 128, 32, 32, 32 )
 
+[node name="Fruit0Sprite" type="Sprite" parent="."]
+position = Vector2( -8, 0 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 352, 256, 32, 32 )
+
+[node name="Fruit1Sprite" type="Sprite" parent="."]
+position = Vector2( 8, 0 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 352, 256, 32, 32 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 2 )
 shape = SubResource( 1 )
 [connection signal="input_event" from="." to="." method="_on_AppleTree_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_Tree_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Tree_mouse_exited"]

@@ -38,8 +38,6 @@ func _on_day_changed(_day):
 		stage_days = 0
 	else:
 		stage_days += 1
-		
-	print(stage)
 	
 	if stage == 2:
 		can_harvest = true

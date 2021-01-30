@@ -11,6 +11,10 @@ enum {
 	CORN,
 	EGG,
 	APPLE,
+	ORANGE,
+	PEAR,
+	PEACH,
+	CHERRY,
 	REVOLVER,
 	BULLET,
 	FENCE,
@@ -103,6 +107,35 @@ var item_properties = {
 		"name": "Apple",
 		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
 		"icon": Rect2(0, 0, 32, 32),
+		"small_icon": Rect2(0, 32, 32, 32),
+		"item_type": ItemType.FOOD
+	},
+	ORANGE: {
+		"name": "Orange",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(32, 0, 32, 32),
+		"small_icon": Rect2(32, 32, 32, 32),
+		"item_type": ItemType.FOOD
+	},
+	PEAR: {
+		"name": "Pear",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(64, 0, 32, 32),
+		"small_icon": Rect2(64, 32, 32, 32),
+		"item_type": ItemType.FOOD
+	},
+	PEACH: {
+		"name": "Peach",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(96, 0, 32, 32),
+		"small_icon": Rect2(96, 32, 32, 32),
+		"item_type": ItemType.FOOD
+	},
+	CHERRY: {
+		"name": "Cherry",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(160, 0, 32, 32),
+		"small_icon": Rect2(160, 32, 32, 32),
 		"item_type": ItemType.FOOD
 	},
 	REVOLVER: {

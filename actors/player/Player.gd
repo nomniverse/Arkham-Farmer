@@ -44,20 +44,20 @@ func _input(event):
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
-			if $HUD/Hotbar.get_active_slot_item()['properties']['item_type'] == Items.ItemType.TOOL:
+			if get_active_slot_item_type() == Items.ItemType.TOOL:
 				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
 				var player_tile_pos = farm.position_to_tile_position(global_position)
 				
 				# Sets tile based on placement range
 				if is_within_tile_reach(tile_pos, player_tile_pos):
 					# Foreground Interactions
-					if $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.AXE:
+					if get_active_slot_item_id() == Items.AXE:
 						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.FOREGROUND] == 0:
 							farm.set_tile_at_position(get_global_mouse_position(), -1, farm.FOREGROUND)
 							$HUD/Hotbar.add_item(Items.FENCE)
 					
 					# Background Interactions
-					if $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.HOE:
+					if get_active_slot_item_id() == Items.HOE:
 						var background_tile = farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND]
 						
 						if "GRASS" in farm.background_tiles[background_tile]:
@@ -66,15 +66,15 @@ func _unhandled_input(event):
 						elif farm.background_tiles[background_tile] == "DIRT":
 							if use_stamina(1):
 								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("TILLED_SOIL"), farm.BACKGROUND)
-					elif $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.AXE:
+					elif get_active_slot_item_id() == Items.AXE:
 						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == farm.background_tiles.find("TILLED_SOIL"):
 							if use_stamina(1):
 								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("DIRT"), farm.BACKGROUND)
-					elif $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.WATER_CAN:
+					elif get_active_slot_item_id() == Items.WATER_CAN:
 						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == farm.background_tiles.find("TILLED_SOIL"):
 							if use_stamina(1):
 								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("WATERED_SOIL"), farm.BACKGROUND)
-			elif $HUD/Hotbar.get_active_slot_item()['properties']['item_type'] == Items.ItemType.BLOCK:
+			elif get_active_slot_item_type() == Items.ItemType.BLOCK:
 				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
 				var player_tile_pos = farm.position_to_tile_position(global_position)
 				
@@ -86,18 +86,18 @@ func _unhandled_input(event):
 					if farm.get_all_tiles_at_tile_position(tile_pos)[farm.FOREGROUND] == -1:
 						farm.set_tile_at_position(get_global_mouse_position(), farm.find_tile_id_by_name(block['properties']['name']), farm.FOREGROUND)
 						$HUD/Hotbar.remove_item(block['item_id'])
-			elif $HUD/Hotbar.get_active_slot_item()['properties']['item_type'] == Items.ItemType.CROP:
+			elif get_active_slot_item_type() == Items.ItemType.CROP:
 				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
 				var player_tile_pos = farm.position_to_tile_position(global_position)
 				
 				# Sets tile based on placement range
 				if is_within_tile_reach(tile_pos, player_tile_pos):
 					# Foreground Interactions
-					if $HUD/Hotbar.get_active_slot_item()['item_id'] == Items.CORN_SEEDS:
+					if get_active_slot_item_id() == Items.CORN_SEEDS:
 						if "SOIL" in farm.background_tiles[farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND]]:
 							farm.place_crop(tile_pos, "Corn")
 							$HUD/Hotbar.remove_item(Items.CORN_SEEDS)
-			elif $HUD/Hotbar.get_active_slot_item()['properties']['item_type'] == Items.ItemType.RANGED_WEAPON:
+			elif get_active_slot_item_type() == Items.ItemType.RANGED_WEAPON:
 				if $HUD/Hotbar.get_active_slot_item()['uses'] > 0:
 					$HUD/Hotbar.get_active_slot_item()['uses'] = $HUD/Hotbar.get_active_slot_item()['uses'] - 1
 					print($HUD/Hotbar.get_active_slot_item()['uses'])
@@ -186,6 +186,14 @@ func set_stamina_bar(value):
 
 func set_fear_bar(value):
 	$HUD/StatusBars.fear_bar.value = value
+	
+	
+func get_active_slot_item_id():
+	return $HUD/Hotbar.get_active_slot_item()['item_id']
+	
+
+func get_active_slot_item_type():
+	return $HUD/Hotbar.get_active_slot_item()['properties']['item_type']
 
 
 func _on_BulletTraceTimer_timeout():
