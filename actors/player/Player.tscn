@@ -2,22 +2,21 @@
 
 [ext_resource path="res://assets/light.png" type="Texture" id=1]
 [ext_resource path="res://actors/player/Player.gd" type="Script" id=2]
-[ext_resource path="res://gui/hotbar/Hotbar.tscn" type="PackedScene" id=3]
 [ext_resource path="res://gui/clock/Clock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Farming and Mining/Citizens.png" type="Texture" id=5]
 [ext_resource path="res://dialogue/DialogueBox.tscn" type="PackedScene" id=6]
 [ext_resource path="res://gui/statusbars/StatusBars.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/Farming and Mining/Tools.png" type="Texture" id=8]
+[ext_resource path="res://gui/inventory/Inventory.tscn" type="PackedScene" id=9]
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 32, 32 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7, 9.5 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle_down"
+[sub_resource type="Animation" id=3]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -32,8 +31,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "idle_horizontal"
+[sub_resource type="Animation" id=4]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -48,8 +46,7 @@ tracks/0/keys = {
 "values": [ 6 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "idle_up"
+[sub_resource type="Animation" id=5]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -63,7 +60,7 @@ tracks/0/keys = {
 "values": [ 4 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -79,8 +76,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "move_horizontal"
+[sub_resource type="Animation" id=7]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -96,7 +92,7 @@ tracks/0/keys = {
 "values": [ 6, 7, 8 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -112,7 +108,7 @@ tracks/0/keys = {
 "values": [ 3, 4, 5 ]
 }
 
-[sub_resource type="CanvasItemMaterial" id=8]
+[sub_resource type="CanvasItemMaterial" id=9]
 blend_mode = 1
 
 [node name="Player" type="KinematicBody2D"]
@@ -129,19 +125,19 @@ frame = 17
 [node name="HandSprite" type="Sprite" parent="."]
 visible = false
 position = Vector2( -8, -8 )
-texture = SubResource( 9 )
+texture = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -0.5 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle_down = SubResource( 2 )
-anims/idle_horizontal = SubResource( 3 )
-anims/idle_up = SubResource( 4 )
-anims/move_down = SubResource( 5 )
-anims/move_horizontal = SubResource( 6 )
-anims/move_up = SubResource( 7 )
+anims/idle_down = SubResource( 3 )
+anims/idle_horizontal = SubResource( 4 )
+anims/idle_up = SubResource( 5 )
+anims/move_down = SubResource( 6 )
+anims/move_horizontal = SubResource( 7 )
+anims/move_up = SubResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -149,14 +145,14 @@ zoom = Vector2( 0.5, 0.5 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Hotbar" parent="HUD" instance=ExtResource( 3 )]
-
 [node name="Clock" parent="HUD" instance=ExtResource( 4 )]
 
 [node name="DialogueBox" parent="HUD" instance=ExtResource( 6 )]
 visible = false
 
 [node name="StatusBars" parent="HUD" instance=ExtResource( 7 )]
+
+[node name="Inventory" parent="HUD" instance=ExtResource( 9 )]
 
 [node name="Flashlight" type="Light2D" parent="."]
 enabled = false
@@ -173,7 +169,7 @@ cast_to = Vector2( 100, 0 )
 
 [node name="BulletTrace" type="Line2D" parent="."]
 light_mask = 3
-material = SubResource( 8 )
+material = SubResource( 9 )
 width = 2.0
 default_color = Color( 0.74902, 0.623529, 0.192157, 1 )
 

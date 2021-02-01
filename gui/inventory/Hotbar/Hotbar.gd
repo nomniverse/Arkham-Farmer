@@ -1,4 +1,4 @@
-extends Control
+extends Bag
 
 
 # Declare member variables here. Examples:
@@ -8,9 +8,6 @@ var active_slot = 0
 func get_active_slot_item():
 	return get_child(active_slot).item
 
-
-func get_item_at_slot(slot):
-	return get_child(slot).item
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -64,48 +61,6 @@ func _input(event):
 			_check_for_hotbar_key(event.scancode)
 
 
-func add_item(id, quantity=1):
-	var empty_slot = -1
-	
-	var i = 0
-	
-	for child in get_children():
-		if child.get_item()['item_id'] == Items.NO_ITEM and empty_slot == -1:
-			empty_slot = i
-		elif child.get_item()['item_id'] == id:
-			child.set_quantity(child.get_quantity() + quantity)
-			return
-			
-		i += 1
-		
-	if empty_slot != -1:
-		get_children()[empty_slot].set_item(id)
-		get_children()[empty_slot].set_quantity(quantity)
-	else:
-		print("No empty slot found... Item lost.")
-	
-	
-func remove_item(id, quantity=1):
-	for child in get_children():
-		if child.get_item()['item_id'] == id:
-			child.set_quantity(child.get_quantity() - quantity)
-			return
-	
-	print("Item not found...")
-	
-
-func find_item_slot(id):
-	for i in get_children().size():
-		if get_children()[i].get_item()['item_id'] == id:
-			return i
-	
-	return null
-
-
-func empty_slot(number):
-	get_child(number).empty()
-	
-	
 func empty_active_slot():
 	empty_slot(active_slot)
 
@@ -162,7 +117,7 @@ func _check_for_hotbar_key(scancode):
 		get_child(active_slot).set_active()
 
 
-func _on_HotbarSlot_gui_input(event):
+func _on_BagSlot_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			get_child(active_slot).set_inactive()
@@ -170,7 +125,7 @@ func _on_HotbarSlot_gui_input(event):
 			get_child(active_slot).set_active()
 
 
-func _on_HotbarSlot2_gui_input(event):
+func _on_BagSlot2_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			get_child(active_slot).set_inactive()
@@ -178,7 +133,7 @@ func _on_HotbarSlot2_gui_input(event):
 			get_child(active_slot).set_active()
 
 
-func _on_HotbarSlot3_gui_input(event):
+func _on_BagSlot3_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			get_child(active_slot).set_inactive()
@@ -186,7 +141,7 @@ func _on_HotbarSlot3_gui_input(event):
 			get_child(active_slot).set_active()
 
 
-func _on_HotbarSlot4_gui_input(event):
+func _on_BagSlot4_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			get_child(active_slot).set_inactive()
@@ -194,7 +149,7 @@ func _on_HotbarSlot4_gui_input(event):
 			get_child(active_slot).set_active()
 
 
-func _on_HotbarSlot5_gui_input(event):
+func _on_BagSlot5_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			get_child(active_slot).set_inactive()
@@ -202,7 +157,7 @@ func _on_HotbarSlot5_gui_input(event):
 			get_child(active_slot).set_active()
 
 
-func _on_HotbarSlot6_gui_input(event):
+func _on_BagSlot6_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			get_child(active_slot).set_inactive()
@@ -210,7 +165,7 @@ func _on_HotbarSlot6_gui_input(event):
 			get_child(active_slot).set_active()
 
 
-func _on_HotbarSlot7_gui_input(event):
+func _on_BagSlot7_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			get_child(active_slot).set_inactive()
@@ -218,7 +173,7 @@ func _on_HotbarSlot7_gui_input(event):
 			get_child(active_slot).set_active()
 
 
-func _on_HotbarSlot8_gui_input(event):
+func _on_BagSlot8_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			get_child(active_slot).set_inactive()
@@ -226,7 +181,7 @@ func _on_HotbarSlot8_gui_input(event):
 			get_child(active_slot).set_active()
 
 
-func _on_HotbarSlot9_gui_input(event):
+func _on_BagSlot9_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			get_child(active_slot).set_inactive()
@@ -234,7 +189,7 @@ func _on_HotbarSlot9_gui_input(event):
 			get_child(active_slot).set_active()
 
 
-func _on_HotbarSlot10_gui_input(event):
+func _on_BagSlot10_gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			get_child(active_slot).set_inactive()

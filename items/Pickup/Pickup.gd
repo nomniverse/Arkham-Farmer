@@ -33,7 +33,7 @@ func _on_Pickup_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		# Sets tile based on placement range
 		if player.is_within_position_reach(get_global_mouse_position()):
-			get_tree().get_root().get_node("Game/Player/HUD/Hotbar").add_item(item['item_id'])
+			get_tree().get_root().get_node("Game/Player/HUD/Inventory").add_item(item['item_id'])
 			Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 			self.queue_free()
 

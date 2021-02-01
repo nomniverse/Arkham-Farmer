@@ -29,6 +29,6 @@ func _on_Container_input_event(viewport, event, shape_idx):
 			if inventory.size() != 0:
 				for i in inventory.size():
 					var item = inventory.pop_front()
-					get_tree().get_root().get_node("Game/Player/HUD/Hotbar").add_item(item['id'], item['quantity'])
+					get_tree().get_root().get_node("Game/Player/HUD/Inventory").add_item(item['id'], item['quantity'])
 					
 				$Sprite.region_rect = Items.item_properties[Items.BOX]['empty_icon']

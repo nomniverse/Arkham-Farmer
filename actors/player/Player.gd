@@ -27,18 +27,18 @@ func _input(event):
 				$Flashlight.enabled = not $Flashlight.enabled
 			
 			if event.is_action_pressed("reload"):
-				if $HUD/Hotbar.get_active_slot_item()['properties']['item_type'] == Items.ItemType.RANGED_WEAPON:
-					var bullet_slot = $HUD/Hotbar.find_item_slot(Items.BULLET)
+				if $HUD/Inventory.get_active_slot_item()['properties']['item_type'] == Items.ItemType.RANGED_WEAPON:
+					var bullet_slot = $HUD/Inventory.find_item_slot(Items.BULLET)
 
 					if bullet_slot:
-						var missing_bullets = $HUD/Hotbar.get_active_slot_item()['properties']['capacity'] - $HUD/Hotbar.get_active_slot_item()['uses']
+						var missing_bullets = $HUD/Inventory.get_active_slot_item()['properties']['capacity'] - $HUD/Inventory.get_active_slot_item()['uses']
 						print(missing_bullets)
-						if $HUD/Hotbar.get_item_at_slot(bullet_slot)['quantity'] >= missing_bullets:
-							$HUD/Hotbar.get_active_slot_item()['uses'] = $HUD/Hotbar.get_active_slot_item()['properties']['capacity']
-							$HUD/Hotbar.remove_item(Items.BULLET, missing_bullets)
+						if $HUD/Inventory.get_item_at_slot(bullet_slot)['quantity'] >= missing_bullets:
+							$HUD/Inventory.get_active_slot_item()['uses'] = $HUD/Inventory.get_active_slot_item()['properties']['capacity']
+							$HUD/Inventory.remove_item(Items.BULLET, missing_bullets)
 						else:
-							$HUD/Hotbar.get_active_slot_item()['uses'] += $HUD/Hotbar.get_item_at_slot(bullet_slot)['quantity']
-							$HUD/Hotbar.empty_slot(bullet_slot)
+							$HUD/Inventory.get_active_slot_item()['uses'] += $HUD/Inventory.get_item_at_slot(bullet_slot)['quantity']
+							$HUD/Inventory.empty_slot(bullet_slot)
 
 
 func _unhandled_input(event):
@@ -54,7 +54,7 @@ func _unhandled_input(event):
 					if get_active_slot_item_id() == Items.AXE:
 						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.FOREGROUND] == 0:
 							farm.set_tile_at_position(get_global_mouse_position(), -1, farm.FOREGROUND)
-							$HUD/Hotbar.add_item(Items.FENCE)
+							$HUD/Inventory.add_item(Items.FENCE)
 					
 					# Background Interactions
 					if get_active_slot_item_id() == Items.HOE:
@@ -80,12 +80,12 @@ func _unhandled_input(event):
 				
 				# Sets tile based on placement range
 				if is_within_tile_reach(tile_pos, player_tile_pos):
-					var block = $HUD/Hotbar.get_active_slot_item()
+					var block = $HUD/Inventory.get_active_slot_item()
 					
 					# Foreground Interactions
 					if farm.get_all_tiles_at_tile_position(tile_pos)[farm.FOREGROUND] == -1:
 						farm.set_tile_at_position(get_global_mouse_position(), farm.find_tile_id_by_name(block['properties']['name']), farm.FOREGROUND)
-						$HUD/Hotbar.remove_item(block['item_id'])
+						$HUD/Inventory.remove_item(block['item_id'])
 			elif get_active_slot_item_type() == Items.ItemType.CROP:
 				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
 				var player_tile_pos = farm.position_to_tile_position(global_position)
@@ -96,11 +96,11 @@ func _unhandled_input(event):
 					if get_active_slot_item_id() == Items.CORN_SEEDS:
 						if "SOIL" in farm.background_tiles[farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND]]:
 							farm.place_crop(tile_pos, "Corn")
-							$HUD/Hotbar.remove_item(Items.CORN_SEEDS)
+							$HUD/Inventory.remove_item(Items.CORN_SEEDS)
 			elif get_active_slot_item_type() == Items.ItemType.RANGED_WEAPON:
-				if $HUD/Hotbar.get_active_slot_item()['uses'] > 0:
-					$HUD/Hotbar.get_active_slot_item()['uses'] = $HUD/Hotbar.get_active_slot_item()['uses'] - 1
-					print($HUD/Hotbar.get_active_slot_item()['uses'])
+				if $HUD/Inventory.get_active_slot_item()['uses'] > 0:
+					$HUD/Inventory.get_active_slot_item()['uses'] = $HUD/Inventory.get_active_slot_item()['uses'] - 1
+					print($HUD/Inventory.get_active_slot_item()['uses'])
 					
 					$BulletRayCast2D.rotation = get_angle_to(get_global_mouse_position())
 					$BulletRayCast2D.enabled = true
@@ -189,11 +189,11 @@ func set_fear_bar(value):
 	
 	
 func get_active_slot_item_id():
-	return $HUD/Hotbar.get_active_slot_item()['item_id']
+	return $HUD/Inventory.get_active_slot_item()['item_id']
 	
 
 func get_active_slot_item_type():
-	return $HUD/Hotbar.get_active_slot_item()['properties']['item_type']
+	return $HUD/Inventory.get_active_slot_item()['properties']['item_type']
 
 
 func _on_BulletTraceTimer_timeout():

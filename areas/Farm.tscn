@@ -501,21 +501,41 @@ position = Vector2( 368, 368 )
 [node name="Trees" type="Node" parent="."]
 
 [node name="Tree" parent="Trees" instance=ExtResource( 6 )]
-position = Vector2( 336, 176 )
+position = Vector2( 112, 240 )
+tree_type = 2
+
+[node name="Tree7" parent="Trees" instance=ExtResource( 6 )]
+position = Vector2( -208, 112 )
 tree_type = 2
 
 [node name="Tree2" parent="Trees" instance=ExtResource( 6 )]
-position = Vector2( 400, 176 )
+position = Vector2( 240, 80 )
+tree_type = 3
+
+[node name="Tree6" parent="Trees" instance=ExtResource( 6 )]
+position = Vector2( 80, 624 )
 tree_type = 3
 
 [node name="Tree3" parent="Trees" instance=ExtResource( 6 )]
-position = Vector2( 464, 176 )
+position = Vector2( 464, 48 )
+tree_type = 4
+
+[node name="Tree8" parent="Trees" instance=ExtResource( 6 )]
+position = Vector2( 528, 656 )
 tree_type = 4
 
 [node name="Tree4" parent="Trees" instance=ExtResource( 6 )]
-position = Vector2( 528, 176 )
+position = Vector2( 784, 400 )
+tree_type = 5
+
+[node name="Tree10" parent="Trees" instance=ExtResource( 6 )]
+position = Vector2( -240, 496 )
 tree_type = 5
 
 [node name="Tree5" parent="Trees" instance=ExtResource( 6 )]
-position = Vector2( 592, 176 )
+position = Vector2( 688, 112 )
+tree_type = 6
+
+[node name="Tree9" parent="Trees" instance=ExtResource( 6 )]
+position = Vector2( 912, 112 )
 tree_type = 6

@@ -72,7 +72,7 @@ func _on_AppleTree_input_event(_viewport, event, _shape_idx):
 				$Fruit0Sprite.region_rect = NO_FRUIT_TEXTURE
 				$Fruit1Sprite.region_rect = NO_FRUIT_TEXTURE
 				
-				get_tree().get_root().get_node("Game/Player/HUD/Hotbar").add_item(fruit_id, 2)
+				get_tree().get_root().get_node("Game/Player/HUD/Inventory").add_item(fruit_id, 2)
 
 
 func _on_Tree_mouse_entered():
