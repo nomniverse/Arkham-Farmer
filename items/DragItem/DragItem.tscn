@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://items/DragItem/DragItem.gd" type="Script" id=1]
+
+[sub_resource type="AtlasTexture" id=1]
+region = Rect2( 0, 0, 32, 32 )
+
+[node name="DragItem" type="TextureRect"]
+margin_right = 48.0
+margin_bottom = 48.0
+mouse_filter = 2
+texture = SubResource( 1 )
+expand = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

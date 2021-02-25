@@ -8,7 +8,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	Globals.bag_open = $Backpack.visible
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,6 +21,7 @@ func _input(event):
 		if event.pressed:
 			if event.is_action_pressed("toggle_backpack"):
 				$Backpack.visible = not $Backpack.visible
+				Globals.bag_open = $Backpack.visible
 
 
 func get_active_slot_item():

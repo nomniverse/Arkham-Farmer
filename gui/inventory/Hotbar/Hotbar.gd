@@ -36,7 +36,7 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed():
-			if event.button_index == BUTTON_WHEEL_UP:
+			if event.button_index == BUTTON_WHEEL_UP and not Globals.crafting_menu_open:
 				get_child(active_slot).set_inactive()
 				
 				if active_slot == 9:
@@ -46,7 +46,7 @@ func _input(event):
 					
 				get_child(active_slot).set_active()
 				
-			if event.button_index == BUTTON_WHEEL_DOWN:
+			if event.button_index == BUTTON_WHEEL_DOWN and not Globals.crafting_menu_open:
 				get_child(active_slot).set_inactive()
 				
 				if active_slot == 0:
@@ -119,7 +119,7 @@ func _check_for_hotbar_key(scancode):
 
 func _on_BagSlot_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed and not Globals.bag_open:
 			get_child(active_slot).set_inactive()
 			active_slot = 0
 			get_child(active_slot).set_active()
@@ -127,7 +127,7 @@ func _on_BagSlot_gui_input(event):
 
 func _on_BagSlot2_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed and not Globals.bag_open:
 			get_child(active_slot).set_inactive()
 			active_slot = 1
 			get_child(active_slot).set_active()
@@ -135,7 +135,7 @@ func _on_BagSlot2_gui_input(event):
 
 func _on_BagSlot3_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed and not Globals.bag_open:
 			get_child(active_slot).set_inactive()
 			active_slot = 2
 			get_child(active_slot).set_active()
@@ -143,7 +143,7 @@ func _on_BagSlot3_gui_input(event):
 
 func _on_BagSlot4_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed and not Globals.bag_open:
 			get_child(active_slot).set_inactive()
 			active_slot = 3
 			get_child(active_slot).set_active()
@@ -151,7 +151,7 @@ func _on_BagSlot4_gui_input(event):
 
 func _on_BagSlot5_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed and not Globals.bag_open:
 			get_child(active_slot).set_inactive()
 			active_slot = 4
 			get_child(active_slot).set_active()
@@ -159,7 +159,7 @@ func _on_BagSlot5_gui_input(event):
 
 func _on_BagSlot6_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed and not Globals.bag_open:
 			get_child(active_slot).set_inactive()
 			active_slot = 5
 			get_child(active_slot).set_active()
@@ -167,7 +167,7 @@ func _on_BagSlot6_gui_input(event):
 
 func _on_BagSlot7_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed and not Globals.bag_open:
 			get_child(active_slot).set_inactive()
 			active_slot = 6
 			get_child(active_slot).set_active()
@@ -175,7 +175,7 @@ func _on_BagSlot7_gui_input(event):
 
 func _on_BagSlot8_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed and not Globals.bag_open:
 			get_child(active_slot).set_inactive()
 			active_slot = 7
 			get_child(active_slot).set_active()
@@ -183,7 +183,7 @@ func _on_BagSlot8_gui_input(event):
 
 func _on_BagSlot9_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed and not Globals.bag_open:
 			get_child(active_slot).set_inactive()
 			active_slot = 8
 			get_child(active_slot).set_active()
@@ -191,7 +191,7 @@ func _on_BagSlot9_gui_input(event):
 
 func _on_BagSlot10_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed and not Globals.bag_open:
 			get_child(active_slot).set_inactive()
 			active_slot = 9
 			get_child(active_slot).set_active()
