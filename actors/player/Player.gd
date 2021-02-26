@@ -163,8 +163,8 @@ func is_within_position_reach(mouse_position):
 func take_damage(amount):
 	.take_damage(amount)
 	set_health_bar(health)
-	
-	
+
+
 func use_stamina(amount):
 	var can_act = .use_stamina(amount)
 	set_stamina_bar(stamina)

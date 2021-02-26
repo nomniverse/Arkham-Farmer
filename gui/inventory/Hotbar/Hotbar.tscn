@@ -87,13 +87,3 @@ margin_top = 8.0
 margin_right = 480.0
 margin_bottom = 48.0
 slot_number = 9
-[connection signal="gui_input" from="BagSlot" to="." method="_on_BagSlot_gui_input"]
-[connection signal="gui_input" from="BagSlot2" to="." method="_on_BagSlot2_gui_input"]
-[connection signal="gui_input" from="BagSlot3" to="." method="_on_BagSlot3_gui_input"]
-[connection signal="gui_input" from="BagSlot4" to="." method="_on_BagSlot4_gui_input"]
-[connection signal="gui_input" from="BagSlot5" to="." method="_on_BagSlot5_gui_input"]
-[connection signal="gui_input" from="BagSlot6" to="." method="_on_BagSlot6_gui_input"]
-[connection signal="gui_input" from="BagSlot7" to="." method="_on_BagSlot7_gui_input"]
-[connection signal="gui_input" from="BagSlot8" to="." method="_on_BagSlot8_gui_input"]
-[connection signal="gui_input" from="BagSlot9" to="." method="_on_BagSlot9_gui_input"]
-[connection signal="gui_input" from="BagSlot10" to="." method="_on_BagSlot10_gui_input"]

@@ -1,6 +1,9 @@
 extends Panel
 
 
+signal slot_selected(item)
+
+
 # Declare member variables here. Examples:
 var item = {
 	"item_id": Items.NO_ITEM,
@@ -91,28 +94,31 @@ func empty():
 
 func _on_BagSlot_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed and Globals.bag_open:
-			if Globals.dragging_item:
-				var drag_item_node = get_tree().get_root().get_node('Game/Player/HUD/DragItem')
-				
-				if is_empty():
-					set_item(drag_item_node.get_item()['item_id'], drag_item_node.get_item()['quantity'])
-					drag_item_node.queue_free()
-					Globals.dragging_item = false
-				else:
-					var temp_item = get_item().duplicate()
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			if Globals.bag_open:
+				if Globals.dragging_item:
+					var drag_item_node = get_tree().get_root().get_node('Game/Player/HUD/DragItem')
 					
-					set_item(drag_item_node.get_item()['item_id'], drag_item_node.get_item()['quantity'])
-					
-					if get_item()['item_id'] == drag_item_node.get_item()['item_id']:
+					if is_empty():
+						set_item(drag_item_node.get_item()['item_id'], drag_item_node.get_item()['quantity'])
 						drag_item_node.queue_free()
 						Globals.dragging_item = false
 					else:
-						drag_item_node.set_item(temp_item['item_id'], temp_item['quantity'])
+						var temp_item = get_item().duplicate()
+						
+						set_item(drag_item_node.get_item()['item_id'], drag_item_node.get_item()['quantity'])
+						
+						if get_item()['item_id'] == drag_item_node.get_item()['item_id']:
+							drag_item_node.queue_free()
+							Globals.dragging_item = false
+						else:
+							drag_item_node.set_item(temp_item['item_id'], temp_item['quantity'])
+				else:
+					var dragItem = DRAG_ITEM.instance()
+					dragItem.set_item(item['item_id'], item['quantity'])
+					
+					get_tree().get_root().get_node('Game/Player/HUD').add_child(dragItem)
+					empty()
+					Globals.dragging_item = true
 			else:
-				var dragItem = DRAG_ITEM.instance()
-				dragItem.set_item(item['item_id'], item['quantity'])
-				
-				get_tree().get_root().get_node('Game/Player/HUD').add_child(dragItem)
-				empty()
-				Globals.dragging_item = true
+				emit_signal('slot_selected', slot_number)

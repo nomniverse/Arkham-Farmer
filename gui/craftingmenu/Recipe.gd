@@ -6,9 +6,12 @@ signal recipe_selected(recipe)
 
 # Declare member variables here. Examples:
 var recipe = {
-	'name': '',
 	'ingredients': [],
-	'time': '0'
+	'time': '0',
+	'output': {
+		'name': '',
+		'texture': Rect2()
+	}
 }
 
 
