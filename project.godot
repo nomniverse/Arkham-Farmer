@@ -32,7 +32,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Rebuild from Madness"
+config/name="Arkham Farmer"
 run/main_scene="res://gui/menus/TitleScreen.tscn"
 config/icon="res://icon.png"
 

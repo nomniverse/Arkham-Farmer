@@ -74,18 +74,6 @@ func _unhandled_input(event):
 						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == farm.background_tiles.find("TILLED_SOIL"):
 							if use_stamina(1):
 								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("WATERED_SOIL"), farm.BACKGROUND)
-			elif get_active_slot_item_type() == Items.ItemType.BLOCK:
-				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
-				var player_tile_pos = farm.position_to_tile_position(global_position)
-				
-				# Sets tile based on placement range
-				if is_within_tile_reach(tile_pos, player_tile_pos):
-					var block = $HUD/Inventory.get_active_slot_item()
-					
-					# Foreground Interactions
-					if farm.get_all_tiles_at_tile_position(tile_pos)[farm.FOREGROUND] == -1:
-						farm.set_tile_at_position(get_global_mouse_position(), farm.find_tile_id_by_name(block['properties']['name']), farm.FOREGROUND)
-						$HUD/Inventory.remove_item(block['item_id'])
 			elif get_active_slot_item_type() == Items.ItemType.CROP:
 				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
 				var player_tile_pos = farm.position_to_tile_position(global_position)
@@ -123,7 +111,28 @@ func _unhandled_input(event):
 					$BulletRayCast2D.enabled = false
 				else:
 					print("No ammo...")
-
+		if event.button_index == BUTTON_RIGHT and event.pressed:
+			if get_active_slot_item_type() == Items.ItemType.BLOCK:
+				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
+				var player_tile_pos = farm.position_to_tile_position(global_position)
+				
+				# Sets tile based on placement range
+				if is_within_tile_reach(tile_pos, player_tile_pos):
+					var block = $HUD/Inventory.get_active_slot_item()
+					
+					# Foreground Interactions
+					if farm.get_all_tiles_at_tile_position(tile_pos)[farm.FOREGROUND] == -1:
+						farm.set_tile_at_position(get_global_mouse_position(), farm.find_tile_id_by_name(block['properties']['name']), farm.FOREGROUND)
+						$HUD/Inventory.remove_item(block['item_id'])
+			elif get_active_slot_item_type() == Items.ItemType.CONTAINER:
+				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
+				var player_tile_pos = farm.position_to_tile_position(global_position)
+				
+				# Sets tile based on placement range
+				if is_within_tile_reach(tile_pos, player_tile_pos):
+					# Foreground Interactions
+					print("TODO: Place container")
+					$HUD/Inventory.remove_item(get_active_slot_item_id())
 
 # Called every physics tick.
 func _physics_process(_delta):

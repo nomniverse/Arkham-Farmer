@@ -57,6 +57,9 @@ func get_quantity():
 
 
 func set_quantity(quantity):
+	if quantity < 0:
+		return false
+	
 	item['quantity'] = quantity
 	
 	if not ((item['quantity'] == 0) or (item['quantity'] == 1)):
@@ -75,6 +78,7 @@ func set_quantity(quantity):
 		$ItemIcon.texture.atlas = item['properties']['texture_file']
 		$ItemIcon.texture.region = item['properties']["icon"]
 
+	return true
 
 func get_uses():
 	return item['uses']

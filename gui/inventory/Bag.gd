@@ -52,9 +52,10 @@ func remove_item(item_id, quantity=1):
 		var child = get_child(i)
 		
 		if child.get_item()['item_id'] == item_id:
-			child.set_quantity(child.get_quantity() - quantity)
+			var completed = child.set_quantity(child.get_quantity() - quantity)
 			
-			return i
+			if completed:
+				return i
 	
 	return null
 	

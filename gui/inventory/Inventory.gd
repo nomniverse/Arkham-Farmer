@@ -17,10 +17,10 @@ func _ready():
 	add_item(Items.AXE)
 	add_item(Items.HOE)
 	add_item(Items.CORN_SEEDS)
-	add_item(Items.LOG)
+	add_item(Items.LOG, 64)
 	add_item(Items.REVOLVER)
 	add_item(Items.BULLET, 12)
-	add_item(Items.FENCE, 64)
+	add_item(Items.FENCE, 32)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

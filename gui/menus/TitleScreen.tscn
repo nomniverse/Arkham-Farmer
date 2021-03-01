@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/LiberationSans/LiberationSansRegular.tres" type="DynamicFontData" id=1]
 [ext_resource path="res://gui/menus/TitleScreen.gd" type="Script" id=2]
@@ -12,6 +12,10 @@ size = 48
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
+size = 48
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 24
 font_data = ExtResource( 1 )
 
@@ -24,32 +28,44 @@ __meta__ = {
 }
 
 [node name="TitleLabel" type="Label" parent="."]
-margin_left = 32.0
-margin_top = 32.0
-margin_right = 752.0
-margin_bottom = 114.0
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 528.0
+margin_bottom = 106.0
 custom_fonts/font = SubResource( 1 )
-text = "Rebuild from Madness"
+text = "Arkham Farmer"
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PlayButton" type="Button" parent="."]
-margin_left = 32.0
-margin_top = 320.0
-margin_right = 256.0
-margin_bottom = 384.0
+margin_left = 24.0
+margin_top = 336.0
+margin_right = 248.0
+margin_bottom = 400.0
 custom_fonts/font = SubResource( 2 )
 text = "Play"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="OptionsButton" type="Button" parent="."]
+margin_left = 24.0
+margin_top = 424.0
+margin_right = 248.0
+margin_bottom = 488.0
+custom_fonts/font = SubResource( 3 )
+text = "Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="QuitButton" type="Button" parent="."]
-margin_left = 32.0
-margin_top = 408.0
-margin_right = 256.0
-margin_bottom = 472.0
+margin_left = 24.0
+margin_top = 512.0
+margin_right = 248.0
+margin_bottom = 576.0
 custom_fonts/font = SubResource( 2 )
 text = "Quit"
 __meta__ = {
@@ -57,12 +73,14 @@ __meta__ = {
 }
 
 [node name="AuthorLabel" type="Label" parent="."]
-margin_left = 848.0
+margin_left = 880.0
 margin_top = 560.0
-margin_right = 1008.0
+margin_right = 1016.0
 margin_bottom = 592.0
-custom_fonts/font = SubResource( 3 )
-text = "By omn0mn0m"
+custom_fonts/font = SubResource( 4 )
+text = "Nomniverse"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
