@@ -10,20 +10,22 @@ enum {
 var background_tiles = []
 var foreground_tiles = []
 
+var rng = RandomNumberGenerator.new()
+
 # Crops
 var plant = preload("res://plants/Plant.tscn")
+var Pickup = preload('res://items/Pickup/Pickup.tscn')
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	rng.randomize()
+	
 	for tile_id in $FarmBackground.tile_set.get_tiles_ids():
 		background_tiles.append($FarmBackground.tile_set.tile_get_name(tile_id))
 	
 	for tile_id in $FarmForeground.tile_set.get_tiles_ids():
 		foreground_tiles.append($FarmForeground.tile_set.tile_get_name(tile_id))
-		
-	print(background_tiles)
-	print(foreground_tiles)
 
 
 func get_path_to_position(origin_position, target_position):
@@ -84,3 +86,36 @@ func place_crop(tile_position, crop_name):
 	new_crop = plant.instance()
 	new_crop.global_position = $FarmBackground.map_to_world(tile_position) + Vector2(16, 8)
 	$Crops.add_child(new_crop)
+
+
+func position_has_roof(position):
+	var tile_pos = position_to_tile_position(position)
+	
+	return $Roofs.get_cellv(tile_pos) != -1
+
+
+func hide_roof(position):
+	var tile_pos = position_to_tile_position(position)
+	
+	$Roofs.visible = false
+
+
+func show_roof(position):
+	var tile_pos = position_to_tile_position(position)
+	
+	$Roofs.visible = true
+
+
+func drop_pickup(item_id, position, amount=1, drop_random=false):
+	var new_pickup
+	new_pickup = Pickup.instance()
+	new_pickup.set_item(item_id, amount)
+	
+	var position_deviation = Vector2.ZERO
+	
+	if drop_random:
+		position_deviation.x = rng.randi_range(-32, 32)
+		position_deviation.y = rng.randi_range(-32, 32)
+	
+	new_pickup.global_position = position + position_deviation
+	$Pickups.add_child(new_pickup)

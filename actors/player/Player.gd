@@ -152,6 +152,13 @@ func _physics_process(_delta):
 		
 	velocity = velocity.normalized() * walk_speed
 	velocity = move_and_slide(velocity)
+	
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		
+		if collision.collider.name == "Roofs":
+			print(collision.collider.get_global_position())
+			break
 
 	# Flips sprite if mouse is on the left of player
 	# NOTE: does not maintain sprite orientation if mouse exactly at player position
@@ -159,6 +166,11 @@ func _physics_process(_delta):
 
 	if last_velocity != velocity:
 		last_velocity = velocity
+		
+	if farm.position_has_roof(global_position):
+		farm.hide_roof(global_position)
+	else:
+		farm.show_roof(global_position)
 
 
 func is_within_tile_reach(tile_position, player_tile_position):

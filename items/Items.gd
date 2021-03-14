@@ -54,6 +54,7 @@ var item_properties = {
 		"texture_file": TRANSPARENT_TEXTURE_PATH,
 		"icon": Rect2(0, 0, 32, 32),
 		"item_type": ItemType.NULL,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -64,6 +65,7 @@ var item_properties = {
 		"texture_file": TOOLS_TEXTURE_PATH,
 		"icon": Rect2(0, 288, 32, 32),
 		"item_type": ItemType.TOOL,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -74,6 +76,7 @@ var item_properties = {
 		"texture_file": TOOLS_TEXTURE_PATH,
 		"icon": Rect2(0, 0, 32, 32),
 		"item_type": ItemType.TOOL,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -84,6 +87,7 @@ var item_properties = {
 		"texture_file": TOOLS_TEXTURE_PATH,
 		"icon": Rect2(0, 32, 32, 32),
 		"item_type": ItemType.TOOL,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -94,6 +98,7 @@ var item_properties = {
 		"texture_file": TOOLS_TEXTURE_PATH,
 		"icon": Rect2(0, 64, 32, 32),
 		"item_type": ItemType.TOOL,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -104,6 +109,7 @@ var item_properties = {
 		"texture_file": ENVIRONMENT_TEXTURE_PATH,
 		"icon": Rect2(352, 32, 32, 32),
 		"item_type": ItemType.BLOCK,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -114,6 +120,7 @@ var item_properties = {
 		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
 		"icon": Rect2(128, 224, 32, 32),
 		"item_type": ItemType.CROP,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -124,6 +131,7 @@ var item_properties = {
 		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
 		"icon": Rect2(32, 64, 32, 32),
 		"item_type": ItemType.FOOD,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -134,6 +142,7 @@ var item_properties = {
 		"texture_file": ANIMALS_TEXTURE_PATH,
 		"icon": Rect2(224, 64, 32, 32),
 		"item_type": ItemType.ITEM,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -145,6 +154,7 @@ var item_properties = {
 		"icon": Rect2(0, 0, 32, 32),
 		"small_icon": Rect2(0, 32, 32, 32),
 		"item_type": ItemType.FOOD,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -156,6 +166,7 @@ var item_properties = {
 		"icon": Rect2(32, 0, 32, 32),
 		"small_icon": Rect2(32, 32, 32, 32),
 		"item_type": ItemType.FOOD,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -167,6 +178,7 @@ var item_properties = {
 		"icon": Rect2(64, 0, 32, 32),
 		"small_icon": Rect2(64, 32, 32, 32),
 		"item_type": ItemType.FOOD,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -178,6 +190,7 @@ var item_properties = {
 		"icon": Rect2(96, 0, 32, 32),
 		"small_icon": Rect2(96, 32, 32, 32),
 		"item_type": ItemType.FOOD,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -189,6 +202,7 @@ var item_properties = {
 		"icon": Rect2(160, 0, 32, 32),
 		"small_icon": Rect2(160, 32, 32, 32),
 		"item_type": ItemType.FOOD,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -199,6 +213,7 @@ var item_properties = {
 		"texture_file": TOOLS_TEXTURE_PATH,
 		"icon": Rect2(0, 320, 32, 32),
 		"item_type": ItemType.RANGED_WEAPON,
+		"pickup_tool": NO_ITEM,
 		"capacity": 6,
 		"recipe": {
 			"ingredients": {},
@@ -210,6 +225,7 @@ var item_properties = {
 		"texture_file": TOOLS_TEXTURE_PATH,
 		"icon": Rect2(0, 352, 32, 32),
 		"item_type": ItemType.AMMO,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {},
 			"time": 0
@@ -220,6 +236,7 @@ var item_properties = {
 		"texture_file": FENCE_TEXTURE_PATH,
 		"icon": Rect2(0, 96, 32, 32),
 		"item_type": ItemType.BLOCK,
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {
 				LOG: 3
@@ -233,6 +250,7 @@ var item_properties = {
 		"icon": Rect2(0, 0, 32, 32),
 		"item_type": ItemType.CONTAINER,
 		"empty_icon": Rect2(32, 0, 32, 32),
+		"pickup_tool": NO_ITEM,
 		"recipe": {
 			"ingredients": {
 				LOG: 3

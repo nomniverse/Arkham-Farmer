@@ -65,7 +65,14 @@ func _on_day_changed(_day):
 func _on_AppleTree_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		if player.is_within_position_reach(get_global_mouse_position()):
-			if can_harvest:
+			if player.get_active_slot_item_id() == Items.AXE:
+				get_tree().get_root().get_node("Game/Farm").drop_pickup(Items.LOG, global_position, 3, true)
+				
+				if can_harvest:
+					get_tree().get_root().get_node("Game/Farm").drop_pickup(fruit_id, global_position, 3, true)
+				
+				queue_free()
+			elif can_harvest:
 				can_harvest = false
 				growth_days = 0
 				
