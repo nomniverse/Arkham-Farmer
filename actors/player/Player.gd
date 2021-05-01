@@ -88,27 +88,9 @@ func _unhandled_input(event):
 			elif get_active_slot_item_type() == Items.ItemType.RANGED_WEAPON:
 				if $HUD/Inventory.get_active_slot_item()['uses'] > 0:
 					$HUD/Inventory.get_active_slot_item()['uses'] = $HUD/Inventory.get_active_slot_item()['uses'] - 1
+					$Gun.shoot()
+					
 					print($HUD/Inventory.get_active_slot_item()['uses'])
-					
-					$BulletRayCast2D.rotation = get_angle_to(get_global_mouse_position())
-					$BulletRayCast2D.enabled = true
-					$BulletRayCast2D.force_raycast_update()
-					
-					var points = PoolVector2Array()
-					points.append(Vector2(0, 0))
-					
-					if $BulletRayCast2D.is_colliding():
-						points.append(to_local($BulletRayCast2D.get_collision_point()))
-						
-						if $BulletRayCast2D.get_collider().has_method("take_damage"):
-							$BulletRayCast2D.get_collider().take_damage(50)
-					else:
-						points.append($BulletRayCast2D.cast_to.rotated(get_angle_to(get_global_mouse_position())))
-						
-					$BulletTrace.points = points
-					$BulletTraceTimer.start()
-						
-					$BulletRayCast2D.enabled = false
 				else:
 					print("No ammo...")
 		if event.button_index == BUTTON_RIGHT and event.pressed:
@@ -215,7 +197,3 @@ func get_active_slot_item_id():
 
 func get_active_slot_item_type():
 	return $HUD/Inventory.get_active_slot_item()['properties']['item_type']
-
-
-func _on_BulletTraceTimer_timeout():
-	$BulletTrace.clear_points()
