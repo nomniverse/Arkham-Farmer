@@ -16,7 +16,7 @@ func _ready():
 	add_item(Items.PICKAXE)
 	add_item(Items.AXE)
 	add_item(Items.HOE)
-	add_item(Items.CORN_SEEDS)
+	add_item(Items.BROCCOLI_SEEDS)
 	add_item(Items.LOG, 64)
 	add_item(Items.REVOLVER)
 	add_item(Items.BULLET, 12)

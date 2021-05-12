@@ -29,7 +29,7 @@ func set_item(item_id, amount=1):
 	item['quantity'] = amount
 
 
-func _on_Pickup_input_event(viewport, event, shape_idx):
+func _on_Pickup_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		# Sets tile based on placement range
 		if player.is_within_position_reach(get_global_mouse_position()):
@@ -38,7 +38,7 @@ func _on_Pickup_input_event(viewport, event, shape_idx):
 			self.queue_free()
 
 
-func _on_Pickup_body_entered(body):
+func _on_Pickup_body_entered(_body):
 	pass # Replace with function body.
 
 

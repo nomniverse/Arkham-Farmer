@@ -24,7 +24,7 @@ region_rect = Rect2( 32, 64, 32, 32 )
 position = Vector2( 8, -8 )
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 288, 64, 32, 32 )
+region_rect = Rect2( 192, 160, 32, 32 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 visible = false

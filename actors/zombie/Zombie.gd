@@ -65,7 +65,9 @@ func _on_MeleeArea2D_body_exited(body):
 	if body.has_method("take_damage"):
 		if body == player:
 			melee_target = null
-			$MeleeTimer.stop()
+			
+			if not $MeleeTimer.is_stopped():
+				$MeleeTimer.stop()
 
 
 func _on_MeleeTimer_timeout():
@@ -77,13 +79,18 @@ func _on_DetectionArea2D_body_entered(body):
 	if body == player:
 		chase_target = body
 		$PathTimer.start()
-		$WanderTimer.stop()
+		
+		if not $WanderTimer.is_stopped():
+			$WanderTimer.stop()
 
 
 func _on_DetectionArea2D_body_exited(body):
 	if body == player:
 		chase_target = null
-		$PathTimer.stop()
+		
+		if not $PathTimer.is_stopped():
+			$PathTimer.stop()
+		
 		$WanderTimer.start()
 
 

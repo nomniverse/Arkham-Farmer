@@ -98,11 +98,15 @@ func position_has_roof(position):
 func hide_roof(position):
 	var tile_pos = position_to_tile_position(position)
 	
+	# TODO make use of tile_pos to get one roof
+	
 	$Roofs.visible = false
 
 
 func show_roof(position):
 	var tile_pos = position_to_tile_position(position)
+	
+	# TODO make use of tile_pos to get one roof
 	
 	$Roofs.visible = true
 

@@ -64,7 +64,8 @@ func _on_Plant_input_event(_viewport, event, _shape_idx):
 		# Sets tile based on placement range
 		if player.is_within_position_reach(get_global_mouse_position()):
 			if can_harvest:
-				get_tree().get_root().get_node("Game/Player/HUD/Inventory").add_item(Items.CORN)
+				var fruit_id = Crops.crop_properties[plant_type]['fruit']
+				get_tree().get_root().get_node("Game/Player/HUD/Inventory").add_item(fruit_id)
 				
 				if can_reharvest:
 					stage = 1

@@ -9,6 +9,18 @@ enum {
 	LOG,
 	CORN_SEEDS,
 	CORN,
+	TOMATO_SEEDS,
+	TOMATO,
+	CUCUMBER_SEEDS,
+	CUCUMBER,
+	PEPPER_SEEDS,
+	PEPPER,
+	BROCCOLI_SEEDS,
+	BROCCOLI,
+	CARROT_SEEDS,
+	CARROT,
+	POTATO_SEEDS,
+	POTATO,
 	EGG,
 	APPLE,
 	ORANGE,
@@ -113,7 +125,7 @@ var item_properties = {
 	CORN_SEEDS: {
 		"name": "Corn Seeds",
 		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
-		"icon": Rect2(128, 224, 32, 32),
+		"icon": Rect2(160, 224, 32, 32),
 		"item_type": ItemType.SEED,
 		"recipe": {
 			"ingredients": {},
@@ -124,6 +136,126 @@ var item_properties = {
 		"name": "Corn",
 		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
 		"icon": Rect2(32, 64, 32, 32),
+		"item_type": ItemType.FOOD,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	TOMATO_SEEDS: {
+		"name": "Tomato Seeds",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(0, 224, 32, 32),
+		"item_type": ItemType.SEED,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	TOMATO: {
+		"name": "Tomato",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(0, 64, 32, 32),
+		"item_type": ItemType.FOOD,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	CUCUMBER_SEEDS: {
+		"name": "Cucumber Seeds",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(160, 224, 32, 32),
+		"item_type": ItemType.SEED,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	CUCUMBER: {
+		"name": "Cucumber",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(64, 64, 32, 32),
+		"item_type": ItemType.FOOD,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	PEPPER_SEEDS: {
+		"name": "Pepper Seeds",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(256, 224, 32, 32),
+		"item_type": ItemType.SEED,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	PEPPER: {
+		"name": "Pepper",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(96, 64, 32, 32),
+		"item_type": ItemType.FOOD,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	BROCCOLI_SEEDS: {
+		"name": "Broccoli Seeds",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(192, 224, 32, 32),
+		"item_type": ItemType.SEED,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	BROCCOLI: {
+		"name": "Broccoli",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(128, 64, 32, 32),
+		"item_type": ItemType.FOOD,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	CARROT_SEEDS: {
+		"name": "Carrot Seeds",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(224, 224, 32, 32),
+		"item_type": ItemType.SEED,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	CARROT: {
+		"name": "Carrot",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(160, 64, 32, 32),
+		"item_type": ItemType.FOOD,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	POTATO_SEEDS: {
+		"name": "Potato Seeds",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(288, 224, 32, 32),
+		"item_type": ItemType.SEED,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	POTATO: {
+		"name": "Potato",
+		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
+		"icon": Rect2(192, 64, 32, 32),
 		"item_type": ItemType.FOOD,
 		"recipe": {
 			"ingredients": {},
