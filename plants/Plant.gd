@@ -13,6 +13,8 @@ var stage = 0
 var stage_days = 0
 var can_harvest = false
 
+var plant_type = Crops.NONE
+
 var player
 
 # Called when the node enters the scene tree for the first time.
@@ -27,9 +29,17 @@ func _ready():
 	$PlantSprite.region_rect = STEM_SPRITE
 	$FruitSprite.region_rect = NO_FRUIT_SPRITE
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func set_crop_type_by_seed(seed_id):
+	if Items.item_properties[seed_id]['item_type'] == Items.ItemType.SEED:
+		plant_type = Crops.get_crop_by_seed(seed_id)
+	else:
+		print("Invalid crop id")
 
 
 func _on_day_changed(_day):
@@ -41,7 +51,8 @@ func _on_day_changed(_day):
 	
 	if stage == 2:
 		can_harvest = true
-		$FruitSprite.region_rect = Items.item_properties[Items.CORN]['icon']
+		var fruit_id = Crops.crop_properties[plant_type]['fruit']
+		$FruitSprite.region_rect = Items.item_properties[fruit_id]['icon']
 	elif stage == 1:
 		$PlantSprite.region_rect = PLANT_SPRITE
 	else:

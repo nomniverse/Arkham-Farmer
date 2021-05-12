@@ -33,4 +33,5 @@ occluder = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 2 )
+
 [connection signal="input_event" from="." to="." method="_on_Plant_input_event"]

@@ -13,6 +13,8 @@ var health = 100
 var stamina = 100
 var fear = 0
 
+var money = 0
+
 
 var rng = RandomNumberGenerator.new()
 

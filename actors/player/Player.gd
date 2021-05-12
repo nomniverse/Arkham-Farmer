@@ -74,17 +74,16 @@ func _unhandled_input(event):
 						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == farm.background_tiles.find("TILLED_SOIL"):
 							if use_stamina(1):
 								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("WATERED_SOIL"), farm.BACKGROUND)
-			elif get_active_slot_item_type() == Items.ItemType.CROP:
+			elif get_active_slot_item_type() == Items.ItemType.SEED:
 				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
 				var player_tile_pos = farm.position_to_tile_position(global_position)
 				
 				# Sets tile based on placement range
 				if is_within_tile_reach(tile_pos, player_tile_pos):
 					# Foreground Interactions
-					if get_active_slot_item_id() == Items.CORN_SEEDS:
-						if "SOIL" in farm.background_tiles[farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND]]:
-							farm.place_crop(tile_pos, "Corn")
-							$HUD/Inventory.remove_item(Items.CORN_SEEDS)
+					if "SOIL" in farm.background_tiles[farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND]]:
+						farm.place_crop(tile_pos, get_active_slot_item_id())
+						$HUD/Inventory.remove_item(get_active_slot_item_id())
 			elif get_active_slot_item_type() == Items.ItemType.RANGED_WEAPON:
 				if $HUD/Inventory.get_active_slot_item()['uses'] > 0:
 					$HUD/Inventory.get_active_slot_item()['uses'] = $HUD/Inventory.get_active_slot_item()['uses'] - 1

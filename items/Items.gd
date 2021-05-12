@@ -30,7 +30,7 @@ enum ItemType {
 	RANGED_WEAPON,
 	AMMO,
 	MELEE_WEAPON,
-	CROP,
+	SEED,
 	FOOD,
 }
 
@@ -47,6 +47,7 @@ var MINERALS_TEXTURE_PATH = preload("res://assets/Farming and Mining/Minerals.pn
 var REFINED_MATERIALS_TEXTURE_PATH = preload("res://assets/Farming and Mining/RefinedMaterials.png")
 var THOUGHT_BUBBLE_TEXTURE_PATH = preload("res://assets/Farming and Mining/ThoughtBubbles.png")
 var TOOLS_TEXTURE_PATH = preload("res://assets/Farming and Mining/Tools.png")
+
 
 var item_properties = {
 	NO_ITEM: {
@@ -113,7 +114,7 @@ var item_properties = {
 		"name": "Corn Seeds",
 		"texture_file": FRUITS_VEG_SEED_TEXTURE_PATH,
 		"icon": Rect2(128, 224, 32, 32),
-		"item_type": ItemType.CROP,
+		"item_type": ItemType.SEED,
 		"recipe": {
 			"ingredients": {},
 			"time": 0

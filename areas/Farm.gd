@@ -81,10 +81,11 @@ func find_tile_id_by_name(tile_name, layer=FOREGROUND):
 		return $FarmBackground.tile_set.find_tile_by_name(tile_name)
 
 
-func place_crop(tile_position, crop_name):
+func place_crop(tile_position, seed_id):
 	var new_crop
 	new_crop = plant.instance()
 	new_crop.global_position = $FarmBackground.map_to_world(tile_position) + Vector2(16, 8)
+	new_crop.set_crop_type_by_seed(seed_id)
 	$Crops.add_child(new_crop)
 
 
