@@ -9,6 +9,8 @@ var run_speed = 400
 
 var farm
 
+var roof_pos = null
+var under_roof = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -133,13 +135,6 @@ func _physics_process(_delta):
 		
 	velocity = velocity.normalized() * walk_speed
 	velocity = move_and_slide(velocity)
-	
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
-		
-		if collision.collider.name == "Roofs":
-			print(collision.collider.get_global_position())
-			break
 
 	# Flips sprite if mouse is on the left of player
 	# NOTE: does not maintain sprite orientation if mouse exactly at player position
@@ -149,9 +144,15 @@ func _physics_process(_delta):
 		last_velocity = velocity
 		
 	if farm.position_has_roof(global_position):
-		farm.hide_roof(global_position)
+		if not under_roof:
+			farm.hide_roof(global_position)
+			roof_pos = global_position
+			under_roof = true
 	else:
-		farm.show_roof(global_position)
+		if under_roof:
+			farm.show_roof(roof_pos)
+			roof_pos = null
+			under_roof = false
 
 
 func is_within_tile_reach(tile_position, player_tile_position):

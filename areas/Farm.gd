@@ -4,11 +4,18 @@ extends Node2D
 # Declare member variables here. Examples:
 enum {
 	FOREGROUND,
-	BACKGROUND
+	BACKGROUND,
+	ROOF,
+	FLOORING,
 }
 
+# Map Tiles
 var background_tiles = []
 var foreground_tiles = []
+
+# Housing Tiles
+var flooring_tiles = []
+var roof_tiles = []
 
 var rng = RandomNumberGenerator.new()
 
@@ -26,6 +33,12 @@ func _ready():
 	
 	for tile_id in $FarmForeground.tile_set.get_tiles_ids():
 		foreground_tiles.append($FarmForeground.tile_set.tile_get_name(tile_id))
+		
+	for tile_id in $Flooring.tile_set.get_tiles_ids():
+		flooring_tiles.append($Flooring.tile_set.tile_get_name(tile_id))
+		
+	for tile_id in $Roofs.tile_set.get_tiles_ids():
+		roof_tiles.append($Roofs.tile_set.tile_get_name(tile_id))
 
 
 func get_path_to_position(origin_position, target_position):
@@ -60,18 +73,26 @@ func set_tile_at_tile_position(position, tile, layer=FOREGROUND):
 			$Navigation2D/NavigationTileMap.set_cell(position.x, position.y, $Navigation2D/NavigationTileMap.OBSTACLE_TILE)
 	elif layer == BACKGROUND:
 		$FarmBackground.set_cell(position.x, position.y, tile)
+	elif layer == ROOF:
+		$Roofs.set_cell(position.x, position.y, tile)
+	elif layer == FLOORING:
+		$Flooring.set_cell(position.x, position.y, tile)
 	else:
 		print("Invalid layer")
+		
+	if layer == BACKGROUND:
+		$FarmBackground.update_bitmask_area(position)
+	elif layer == FOREGROUND:
+		$FarmForeground.update_bitmask_area(position)
+	elif layer == ROOF:
+		$Roofs.update_bitmask_area(position)
+	elif layer == FLOORING:
+		$Flooring.update_bitmask_area(position)
 
 
 func set_tile_at_position(position, tile, layer=FOREGROUND):
 	var tile_pos = $FarmBackground.world_to_map(position)
 	set_tile_at_tile_position(tile_pos, tile, layer)
-	
-	if layer == BACKGROUND:
-		$FarmBackground.update_bitmask_area(tile_pos)
-	elif layer == FOREGROUND:
-		$FarmForeground.update_bitmask_area(tile_pos)
 
 
 func find_tile_id_by_name(tile_name, layer=FOREGROUND):
@@ -79,6 +100,10 @@ func find_tile_id_by_name(tile_name, layer=FOREGROUND):
 		return $FarmForeground.tile_set.find_tile_by_name(tile_name)
 	elif layer == BACKGROUND:
 		return $FarmBackground.tile_set.find_tile_by_name(tile_name)
+	elif layer == ROOF:
+		return $Roofs.tile_set.find_tile_by_name(tile_name)
+	elif layer == FLOORING:
+		return $Flooring.tile_set.find_tile_by_name(tile_name)
 
 
 func place_crop(tile_position, seed_id):
@@ -96,19 +121,51 @@ func position_has_roof(position):
 
 
 func hide_roof(position):
-	var tile_pos = position_to_tile_position(position)
+	var player_pos = position_to_tile_position(position)
+	var tile_pos = player_pos
 	
-	# TODO make use of tile_pos to get one roof
+	var roofing_id = find_tile_id_by_name('Invisible Roof', ROOF)
 	
-	$Roofs.visible = false
+	# Going up
+	while $Roofs.get_cellv(tile_pos) != -1:
+		# Going left
+		while $Roofs.get_cellv(tile_pos) != -1:
+			set_tile_at_tile_position(tile_pos, roofing_id, ROOF)
+			tile_pos.x += 1
+		
+		tile_pos.x = player_pos.x
+		
+		# Going right
+		while $Roofs.get_cellv(tile_pos) != -1:
+			set_tile_at_tile_position(tile_pos, roofing_id, ROOF)
+			tile_pos.x -= 1
+		
+		tile_pos.x = player_pos.x
+		tile_pos.y -= 1
 
 
 func show_roof(position):
-	var tile_pos = position_to_tile_position(position)
+	var player_pos = position_to_tile_position(position)
+	var tile_pos = player_pos
 	
-	# TODO make use of tile_pos to get one roof
+	var roofing_id = find_tile_id_by_name('Housing Roof', ROOF)
 	
-	$Roofs.visible = true
+	# Going up
+	while $Roofs.get_cellv(tile_pos) != -1:
+		# Going left
+		while $Roofs.get_cellv(tile_pos) != -1:
+			set_tile_at_tile_position(tile_pos, roofing_id, ROOF)
+			tile_pos.x += 1
+		
+		tile_pos.x = player_pos.x
+		
+		# Going right
+		while $Roofs.get_cellv(tile_pos) != -1:
+			set_tile_at_tile_position(tile_pos, roofing_id, ROOF)
+			tile_pos.x -= 1
+		
+		tile_pos.x = player_pos.x
+		tile_pos.y -= 1
 
 
 func drop_pickup(item_id, position, amount=1, drop_random=false):

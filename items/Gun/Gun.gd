@@ -7,7 +7,7 @@ var wielder
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	wielder = get_parent()
+	$BulletRayCast2D.add_exception(get_parent())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,10 +23,11 @@ func shoot():
 	var points = PoolVector2Array()
 	points.append(Vector2(0, 0))
 	
-	if $BulletRayCast2D.is_colliding() and $BulletRayCast2D.get_collider() != wielder:
+	if $BulletRayCast2D.is_colliding():
 		points.append(to_local($BulletRayCast2D.get_collision_point()))
 		
 		if $BulletRayCast2D.get_collider().has_method("take_damage"):
+			print("hit")
 			$BulletRayCast2D.get_collider().take_damage(50)
 	else:
 		points.append($BulletRayCast2D.cast_to.rotated(get_angle_to(get_global_mouse_position())))
