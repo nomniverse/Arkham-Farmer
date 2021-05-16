@@ -709,7 +709,6 @@ format = 1
 script = ExtResource( 3 )
 
 [node name="Roofs" type="TileMap" parent="."]
-visible = false
 z_index = 2
 tile_set = SubResource( 52 )
 cell_size = Vector2( 32, 32 )
