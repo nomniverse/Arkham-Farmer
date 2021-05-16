@@ -29,7 +29,7 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed() and not Globals.crafting_menu_open:
-			if event.button_index == BUTTON_WHEEL_UP:
+			if event.button_index == BUTTON_WHEEL_DOWN:
 				get_child(active_slot).set_inactive()
 				
 				if active_slot == 9:
@@ -39,7 +39,7 @@ func _input(event):
 					
 				get_child(active_slot).set_active()
 				
-			if event.button_index == BUTTON_WHEEL_DOWN:
+			if event.button_index == BUTTON_WHEEL_UP:
 				get_child(active_slot).set_inactive()
 				
 				if active_slot == 0:

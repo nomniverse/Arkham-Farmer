@@ -38,10 +38,10 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Settings="*res://Settings.gd"
-Globals="*res://Globals.gd"
-Items="*res://items/Items.gd"
-Crops="*res://plants/Crops.gd"
+Settings="*res://singletons/Settings.gd"
+Globals="*res://singletons/Globals.gd"
+Items="*res://singletons/Items.gd"
+Crops="*res://singletons/Crops.gd"
 
 [input]
 

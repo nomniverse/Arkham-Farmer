@@ -44,6 +44,8 @@ enum ItemType {
 	MELEE_WEAPON,
 	SEED,
 	FOOD,
+	ROCK,
+	ORE,
 }
 
 var TRANSPARENT_TEXTURE_PATH = preload("res://assets/transparent_tile.png")
@@ -372,5 +374,16 @@ var item_properties = {
 			},
 			"time": 0
 		}
-	}
+	},
+	
 }
+
+
+func get_items_of_type(type):
+	var items = []
+	
+	for item in Items.keys():
+		if item_properties[item]['item_type'] == type:
+			items.append(item)
+	
+	return items
