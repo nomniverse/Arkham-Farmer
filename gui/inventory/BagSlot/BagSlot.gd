@@ -112,7 +112,7 @@ func _on_BagSlot_gui_input(event):
 						
 						set_item(drag_item_node.get_item()['item_id'], drag_item_node.get_item()['quantity'])
 						
-						if get_item()['item_id'] == drag_item_node.get_item()['item_id']:
+						if temp_item['item_id'] == drag_item_node.get_item()['item_id']:
 							drag_item_node.queue_free()
 							Globals.dragging_item = false
 						else:
