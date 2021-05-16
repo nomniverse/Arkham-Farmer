@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://assets/Farming and Mining/Environment.png" type="Texture" id=1]
 [ext_resource path="res://assets/TileIndicator.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://areas/NavigationTileMap.gd" type="Script" id=7]
 [ext_resource path="res://items/Container/Container.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/Farming and Mining/Fence.png" type="Texture" id=9]
+[ext_resource path="res://items/Rock/Rock.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/housing_tiles.png" type="Texture" id=11]
 
 [sub_resource type="TileSet" id=1]
@@ -779,3 +780,23 @@ position = Vector2( 912, 112 )
 tree_type = 6
 
 [node name="Pickups" type="Node" parent="."]
+
+[node name="Rocks" type="Node" parent="."]
+
+[node name="Rock" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 288, 256 )
+
+[node name="Rock2" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 288, 288 )
+
+[node name="Rock3" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 288, 320 )
+
+[node name="Rock4" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 288, 352 )
+
+[node name="Rock5" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 288, 384 )
+
+[node name="Rock6" parent="Rocks" instance=ExtResource( 10 )]
+position = Vector2( 288, 416 )

@@ -31,6 +31,8 @@ enum {
 	BULLET,
 	FENCE,
 	BOX,
+	RAW_STONE,
+	MINED_STONE,
 }
 
 enum ItemType {
@@ -375,7 +377,31 @@ var item_properties = {
 			"time": 0
 		}
 	},
-	
+	RAW_STONE: {
+		"name": "Raw Stone",
+		"texture_file": MINERALS_TEXTURE_PATH,
+		"icon": [
+			Rect2(0, 0, 32, 32),
+			Rect2(32, 0, 32, 32),
+			Rect2(64, 0, 32, 32),
+		],
+		"item_type": ItemType.ROCK,
+		"drop": MINED_STONE,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	MINED_STONE: {
+		"name": "Mined Stone",
+		"texture_file": MINERALS_TEXTURE_PATH,
+		"icon": Rect2(0, 64, 32, 32),
+		"item_type": ItemType.ORE,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
 }
 
 
