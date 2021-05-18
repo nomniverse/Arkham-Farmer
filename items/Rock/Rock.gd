@@ -26,11 +26,20 @@ func _ready():
 			'properties': Items.item_properties[Items.RAW_STONE],
 			'quantity': rng.randi_range(1, 3)
 		}
+	else:
+		var rocks = Items.get_items_of_type(Items.ItemType.ROCK)
+		var item_id = rocks[rng.randi_range(1, rocks.size() - 1)]
 		
-		$Sprite.texture = $Sprite.texture.duplicate() # IDK why, but editor "Make Unique" does not work
-		$Sprite.texture.atlas = item['properties']['texture_file']
-		var icon_idx = rng.randi_range(0, item['properties']['icon'].size() - 1)
-		$Sprite.texture.region = item['properties']['icon'][icon_idx]
+		item = {
+			'item_id': item_id,
+			'properties': Items.item_properties[item_id],
+			'quantity': rng.randi_range(1, 3)
+		}
+		
+	$Sprite.texture = $Sprite.texture.duplicate() # IDK why, but editor "Make Unique" does not work
+	$Sprite.texture.atlas = item['properties']['texture_file']
+	var icon_idx = rng.randi_range(0, item['properties']['icon'].size() - 1)
+	$Sprite.texture.region = item['properties']['icon'][icon_idx]
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

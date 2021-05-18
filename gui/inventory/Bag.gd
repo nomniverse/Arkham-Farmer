@@ -38,9 +38,7 @@ func add_item(item_id, quantity=1):
 		
 		return empty_slot
 	else:
-		print("No empty slot found... Item lost.")
-	
-	return null
+		return null
 
 
 func get_item_at_slot(slot):

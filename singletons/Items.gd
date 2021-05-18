@@ -33,6 +33,14 @@ enum {
 	BOX,
 	RAW_STONE,
 	MINED_STONE,
+	RAW_COPPER,
+	MINED_COPPER,
+	RAW_SILVER,
+	MINED_SILVER,
+	RAW_GOLD,
+	MINED_GOLD,
+	RAW_COAL,
+	COAL,
 }
 
 enum ItemType {
@@ -402,13 +410,113 @@ var item_properties = {
 			"time": 0
 		}
 	},
+	RAW_COPPER: {
+		"name": "Raw Copper",
+		"texture_file": MINERALS_TEXTURE_PATH,
+		"icon": [
+			Rect2(288, 0, 32, 32),
+			Rect2(320, 0, 32, 32),
+			Rect2(352, 0, 32, 32),
+		],
+		"item_type": ItemType.ROCK,
+		"drop": MINED_COPPER,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	MINED_COPPER: {
+		"name": "Mined Copper",
+		"texture_file": MINERALS_TEXTURE_PATH,
+		"icon": Rect2(96, 64, 32, 32),
+		"item_type": ItemType.ORE,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	RAW_SILVER: {
+		"name": "Raw Silver",
+		"texture_file": MINERALS_TEXTURE_PATH,
+		"icon": [
+			Rect2(192, 0, 32, 32),
+			Rect2(224, 0, 32, 32),
+			Rect2(256, 0, 32, 32),
+		],
+		"item_type": ItemType.ROCK,
+		"drop": MINED_SILVER,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	MINED_SILVER: {
+		"name": "Mined Silver",
+		"texture_file": MINERALS_TEXTURE_PATH,
+		"icon": Rect2(64, 64, 32, 32),
+		"item_type": ItemType.ORE,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	RAW_GOLD: {
+		"name": "Raw Gold",
+		"texture_file": MINERALS_TEXTURE_PATH,
+		"icon": [
+			Rect2(192, 32, 32, 32),
+			Rect2(224, 32, 32, 32),
+			Rect2(256, 32, 32, 32),
+		],
+		"item_type": ItemType.ROCK,
+		"drop": MINED_GOLD,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	MINED_GOLD: {
+		"name": "Mined Gold",
+		"texture_file": MINERALS_TEXTURE_PATH,
+		"icon": Rect2(192, 64, 32, 32),
+		"item_type": ItemType.ORE,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	RAW_COAL: {
+		"name": "Raw Coal",
+		"texture_file": MINERALS_TEXTURE_PATH,
+		"icon": [
+			Rect2(96, 32, 32, 32),
+			Rect2(128, 32, 32, 32),
+			Rect2(160, 32, 32, 32),
+		],
+		"item_type": ItemType.ROCK,
+		"drop": COAL,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
+	COAL: {
+		"name": "Coal",
+		"texture_file": MINERALS_TEXTURE_PATH,
+		"icon": Rect2(160, 64, 32, 32),
+		"item_type": ItemType.ORE,
+		"recipe": {
+			"ingredients": {},
+			"time": 0
+		}
+	},
 }
 
 
 func get_items_of_type(type):
 	var items = []
 	
-	for item in Items.keys():
+	for item in item_properties.keys():
 		if item_properties[item]['item_type'] == type:
 			items.append(item)
 	
