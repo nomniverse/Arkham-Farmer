@@ -124,48 +124,32 @@ func hide_roof(position):
 	var player_pos = position_to_tile_position(position)
 	var tile_pos = player_pos
 	
-	var roofing_id = find_tile_id_by_name('Invisible Roof', ROOF)
+	var invisible_id = find_tile_id_by_name('Invisible Roof', ROOF)
+	var roofing_id = find_tile_id_by_name('Housing Roof', ROOF)
 	
-	# Going up
-	while $Roofs.get_cellv(tile_pos) != -1:
-		# Going left
-		while $Roofs.get_cellv(tile_pos) != -1:
-			set_tile_at_tile_position(tile_pos, roofing_id, ROOF)
-			tile_pos.x += 1
-		
-		tile_pos.x = player_pos.x
-		
-		# Going right
-		while $Roofs.get_cellv(tile_pos) != -1:
-			set_tile_at_tile_position(tile_pos, roofing_id, ROOF)
-			tile_pos.x -= 1
-		
-		tile_pos.x = player_pos.x
-		tile_pos.y -= 1
+	flood_fill(tile_pos.x, tile_pos.y, roofing_id, invisible_id)
 
 
 func show_roof(position):
 	var player_pos = position_to_tile_position(position)
 	var tile_pos = player_pos
 	
+	var invisible_id = find_tile_id_by_name('Invisible Roof', ROOF)
 	var roofing_id = find_tile_id_by_name('Housing Roof', ROOF)
 	
-	# Going up
-	while $Roofs.get_cellv(tile_pos) != -1:
-		# Going left
-		while $Roofs.get_cellv(tile_pos) != -1:
-			set_tile_at_tile_position(tile_pos, roofing_id, ROOF)
-			tile_pos.x += 1
-		
-		tile_pos.x = player_pos.x
-		
-		# Going right
-		while $Roofs.get_cellv(tile_pos) != -1:
-			set_tile_at_tile_position(tile_pos, roofing_id, ROOF)
-			tile_pos.x -= 1
-		
-		tile_pos.x = player_pos.x
-		tile_pos.y -= 1
+	flood_fill(tile_pos.x, tile_pos.y, invisible_id, roofing_id)
+
+
+func flood_fill(x, y, old_tile, new_tile):
+	if $Roofs.get_cellv(Vector2(x, y)) == -1  or $Roofs.get_cellv(Vector2(x, y)) != old_tile or $Roofs.get_cellv(Vector2(x, y)) == new_tile:
+		return
+	
+	set_tile_at_tile_position(Vector2(x, y), new_tile, ROOF)
+	
+	flood_fill(x + 1, y, old_tile, new_tile)
+	flood_fill(x - 1, y, old_tile, new_tile)
+	flood_fill(x, y + 1, old_tile, new_tile)
+	flood_fill(x, y - 1, old_tile, new_tile)
 
 
 func drop_pickup(item_id, position, amount=1, drop_random=false):
