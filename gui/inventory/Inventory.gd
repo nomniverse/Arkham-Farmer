@@ -37,6 +37,10 @@ func _input(event):
 			if event.is_action_pressed("toggle_backpack"):
 				$Backpack.visible = not $Backpack.visible
 				Globals.bag_open = $Backpack.visible
+				
+			if event.is_action_pressed("close_inventory"):
+				$Backpack.visible = false
+				Globals.bag_open = false
 
 
 func get_active_slot_item():

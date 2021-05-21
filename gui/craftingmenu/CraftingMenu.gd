@@ -33,6 +33,10 @@ func _input(event):
 			if event.is_action_pressed("toggle_crafting_menu"):
 				$Menu.visible = not $Menu.visible
 				Globals.crafting_menu_open = $Menu.visible
+				
+			if event.is_action_pressed("close_inventory"):
+				$Menu.visible = false
+				Globals.crafting_menu_open = false
 
 
 func _on_Recipe_selected(item):
