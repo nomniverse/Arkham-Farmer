@@ -52,30 +52,12 @@ func _unhandled_input(event):
 				
 				# Sets tile based on placement range
 				if is_within_tile_reach(tile_pos, player_tile_pos):
-					# Foreground Interactions
-					if get_active_slot_item_id() == Items.AXE:
-						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.FOREGROUND] == 0:
-							farm.set_tile_at_position(get_global_mouse_position(), -1, farm.FOREGROUND)
-							$HUD/Inventory.add_item(Items.FENCE)
-					
-					# Background Interactions
 					if get_active_slot_item_id() == Items.HOE:
-						var background_tile = farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND]
-						
-						if "GRASS" in farm.background_tiles[background_tile]:
-							if use_stamina(1):
-								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("DIRT"), farm.BACKGROUND)
-						elif farm.background_tiles[background_tile] == "DIRT":
-							if use_stamina(1):
-								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("TILLED_SOIL"), farm.BACKGROUND)
+						use_hoe(tile_pos)
 					elif get_active_slot_item_id() == Items.AXE:
-						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == farm.background_tiles.find("TILLED_SOIL"):
-							if use_stamina(1):
-								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("DIRT"), farm.BACKGROUND)
+						use_axe(tile_pos)
 					elif get_active_slot_item_id() == Items.WATER_CAN:
-						if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == farm.background_tiles.find("TILLED_SOIL"):
-							if use_stamina(1):
-								farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("WATERED_SOIL"), farm.BACKGROUND)
+						use_watering_can(tile_pos)
 			elif get_active_slot_item_type() == Items.ItemType.SEED:
 				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
 				var player_tile_pos = farm.position_to_tile_position(global_position)
@@ -105,7 +87,34 @@ func _unhandled_input(event):
 					
 					# Foreground Interactions
 					if farm.get_all_tiles_at_tile_position(tile_pos)[farm.FOREGROUND] == -1:
-						farm.set_tile_at_position(get_global_mouse_position(), farm.find_tile_id_by_name(block['properties']['name']), farm.FOREGROUND)
+						var tile_id = farm.find_tile_id_by_name(block['properties']['name'])
+						farm.set_tile_at_position(get_global_mouse_position(), tile_id, farm.FOREGROUND)
+						$HUD/Inventory.remove_item(block['item_id'])
+			elif get_active_slot_item_type() == Items.ItemType.FLOORING:
+				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
+				var player_tile_pos = farm.position_to_tile_position(global_position)
+				
+				# Sets tile based on placement range
+				if is_within_tile_reach(tile_pos, player_tile_pos):
+					var block = $HUD/Inventory.get_active_slot_item()
+					
+					# Foreground Interactions
+					if farm.get_all_tiles_at_tile_position(tile_pos)[farm.FLOORING] == -1:
+						var tile_id = farm.find_tile_id_by_name(block['properties']['name'], farm.FLOORING)
+						farm.set_tile_at_position(get_global_mouse_position(), tile_id, farm.FLOORING)
+						$HUD/Inventory.remove_item(block['item_id'])
+			elif get_active_slot_item_type() == Items.ItemType.ROOFING:
+				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
+				var player_tile_pos = farm.position_to_tile_position(global_position)
+				
+				# Sets tile based on placement range
+				if is_within_tile_reach(tile_pos, player_tile_pos):
+					var block = $HUD/Inventory.get_active_slot_item()
+					
+					# Foreground Interactions
+					if farm.get_all_tiles_at_tile_position(tile_pos)[farm.ROOF] == -1:
+						var tile_id = farm.find_tile_id_by_name(block['properties']['name'], farm.ROOF)
+						farm.set_tile_at_position(get_global_mouse_position(), tile_id, farm.ROOF)
 						$HUD/Inventory.remove_item(block['item_id'])
 			elif get_active_slot_item_type() == Items.ItemType.CONTAINER:
 				var tile_pos = farm.position_to_tile_position(get_global_mouse_position())
@@ -197,3 +206,29 @@ func get_active_slot_item_id():
 
 func get_active_slot_item_type():
 	return $HUD/Inventory.get_active_slot_item()['properties']['item_type']
+
+
+func use_hoe(tile_pos):
+	var background_tile = farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND]
+	
+	if "GRASS" in farm.background_tiles[background_tile]:
+		if use_stamina(1):
+			farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("DIRT"), farm.BACKGROUND)
+	elif farm.background_tiles[background_tile] == "DIRT":
+		if use_stamina(1):
+			farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("TILLED_SOIL"), farm.BACKGROUND)
+
+
+func use_axe(tile_pos):
+	if farm.get_all_tiles_at_tile_position(tile_pos)[farm.FOREGROUND] == 0:
+		farm.set_tile_at_position(get_global_mouse_position(), -1, farm.FOREGROUND)
+		$HUD/Inventory.add_item(Items.FENCE)
+	elif farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == farm.background_tiles.find("TILLED_SOIL"):
+		if use_stamina(1):
+			farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("DIRT"), farm.BACKGROUND)
+
+
+func use_watering_can(tile_pos):
+	if farm.get_all_tiles_at_tile_position(tile_pos)[farm.BACKGROUND] == farm.background_tiles.find("TILLED_SOIL"):
+		if use_stamina(1):
+			farm.set_tile_at_position(get_global_mouse_position(), farm.background_tiles.find("WATERED_SOIL"), farm.BACKGROUND)

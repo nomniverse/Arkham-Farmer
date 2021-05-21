@@ -53,6 +53,8 @@ func get_all_tiles_at_tile_position(position):
 	var tiles = {
 		BACKGROUND: $FarmBackground.get_cell(position.x, position.y),
 		FOREGROUND: $FarmForeground.get_cell(position.x, position.y),
+		ROOF: $Roofs.get_cell(position.x, position.y),
+		FLOORING: $Flooring.get_cell(position.x, position.y),
 	}
 	
 	return tiles
@@ -125,7 +127,7 @@ func hide_roof(position):
 	var tile_pos = player_pos
 	
 	var invisible_id = find_tile_id_by_name('Invisible Roof', ROOF)
-	var roofing_id = find_tile_id_by_name('Housing Roof', ROOF)
+	var roofing_id = find_tile_id_by_name('Roofing', ROOF)
 	
 	flood_fill(tile_pos.x, tile_pos.y, roofing_id, invisible_id)
 
@@ -135,7 +137,7 @@ func show_roof(position):
 	var tile_pos = player_pos
 	
 	var invisible_id = find_tile_id_by_name('Invisible Roof', ROOF)
-	var roofing_id = find_tile_id_by_name('Housing Roof', ROOF)
+	var roofing_id = find_tile_id_by_name('Roofing', ROOF)
 	
 	flood_fill(tile_pos.x, tile_pos.y, invisible_id, roofing_id)
 

@@ -158,7 +158,7 @@
 6/z_index = 0
 
 [sub_resource type="TileSet" id=2]
-0/name = "Housing Floor"
+0/name = "Flooring"
 0/texture = ExtResource( 11 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
@@ -196,39 +196,39 @@ polygon = PoolVector2Array( 19, 21, 14, 21, 14, 14, 19, 14 )
 cull_mode = 1
 polygon = PoolVector2Array( 19, 21, 14, 21, 14, 14, 19, 14 )
 
-[sub_resource type="OccluderPolygon2D" id=55]
+[sub_resource type="OccluderPolygon2D" id=7]
 polygon = PoolVector2Array( 19, 21, 14, 21, 14, 14, 19, 14 )
 
-[sub_resource type="OccluderPolygon2D" id=56]
+[sub_resource type="OccluderPolygon2D" id=8]
 polygon = PoolVector2Array( 19, 21, 14, 21, 14, 14, 19, 14 )
 
-[sub_resource type="OccluderPolygon2D" id=57]
+[sub_resource type="OccluderPolygon2D" id=9]
 polygon = PoolVector2Array( 19, 21, 14, 21, 14, 14, 19, 14 )
 
 [sub_resource type="OccluderPolygon2D" id=10]
 cull_mode = 1
 polygon = PoolVector2Array( 14, 21, 19, 21, 19, 14, 14, 14 )
 
-[sub_resource type="OccluderPolygon2D" id=58]
+[sub_resource type="OccluderPolygon2D" id=11]
 polygon = PoolVector2Array( 19, 21, 14, 21, 14, 14, 19, 14 )
 
-[sub_resource type="OccluderPolygon2D" id=59]
+[sub_resource type="OccluderPolygon2D" id=12]
 polygon = PoolVector2Array( 19, 21, 14, 21, 14, 14, 19, 14 )
 
-[sub_resource type="OccluderPolygon2D" id=60]
+[sub_resource type="OccluderPolygon2D" id=13]
 polygon = PoolVector2Array( 19, 21, 14, 21, 14, 14, 19, 14 )
 
 [sub_resource type="OccluderPolygon2D" id=14]
 cull_mode = 1
 polygon = PoolVector2Array( 19, 21, 14, 21, 14, 14, 19, 14 )
 
-[sub_resource type="OccluderPolygon2D" id=61]
+[sub_resource type="OccluderPolygon2D" id=15]
 polygon = PoolVector2Array( 19, 21, 14, 21, 14, 14, 19, 14 )
 
-[sub_resource type="OccluderPolygon2D" id=62]
+[sub_resource type="OccluderPolygon2D" id=16]
 polygon = PoolVector2Array( 19, 21, 14, 21, 14, 14, 19, 14 )
 
-[sub_resource type="OccluderPolygon2D" id=63]
+[sub_resource type="OccluderPolygon2D" id=17]
 polygon = PoolVector2Array( 19, 21, 14, 21, 14, 14, 19, 14 )
 
 [sub_resource type="OccluderPolygon2D" id=18]
@@ -340,7 +340,7 @@ points = PoolVector2Array( 0, 8, 8, 8, 8, 0, 24, 0, 24, 16, 0, 16 )
 0/autotile/icon_coordinate = Vector2( 0, 3 )
 0/autotile/tile_size = Vector2( 32, 32 )
 0/autotile/spacing = 0
-0/autotile/occluder_map = [ Vector2( 0, 0 ), SubResource( 3 ), Vector2( 0, 1 ), SubResource( 4 ), Vector2( 0, 2 ), SubResource( 5 ), Vector2( 0, 3 ), SubResource( 6 ), Vector2( 1, 0 ), SubResource( 55 ), Vector2( 1, 1 ), SubResource( 56 ), Vector2( 1, 2 ), SubResource( 57 ), Vector2( 1, 3 ), SubResource( 10 ), Vector2( 2, 0 ), SubResource( 58 ), Vector2( 2, 1 ), SubResource( 59 ), Vector2( 2, 2 ), SubResource( 60 ), Vector2( 2, 3 ), SubResource( 14 ), Vector2( 3, 0 ), SubResource( 61 ), Vector2( 3, 1 ), SubResource( 62 ), Vector2( 3, 2 ), SubResource( 63 ), Vector2( 3, 3 ), SubResource( 18 ) ]
+0/autotile/occluder_map = [ Vector2( 0, 0 ), SubResource( 3 ), Vector2( 0, 1 ), SubResource( 4 ), Vector2( 0, 2 ), SubResource( 5 ), Vector2( 0, 3 ), SubResource( 6 ), Vector2( 1, 0 ), SubResource( 7 ), Vector2( 1, 1 ), SubResource( 8 ), Vector2( 1, 2 ), SubResource( 9 ), Vector2( 1, 3 ), SubResource( 10 ), Vector2( 2, 0 ), SubResource( 11 ), Vector2( 2, 1 ), SubResource( 12 ), Vector2( 2, 2 ), SubResource( 13 ), Vector2( 2, 3 ), SubResource( 14 ), Vector2( 3, 0 ), SubResource( 15 ), Vector2( 3, 1 ), SubResource( 16 ), Vector2( 3, 2 ), SubResource( 17 ), Vector2( 3, 3 ), SubResource( 18 ) ]
 0/autotile/navpoly_map = [  ]
 0/autotile/priority_map = [  ]
 0/autotile/z_index_map = [  ]
@@ -449,7 +449,7 @@ points = PoolVector2Array( 0, 8, 8, 8, 8, 0, 24, 0, 24, 16, 0, 16 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
-1/name = "Housing Wall"
+1/name = "Wall"
 1/texture = ExtResource( 11 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
@@ -595,7 +595,7 @@ points = PoolVector2Array( 0, 8, 8, 8, 8, 0, 24, 0, 24, 16, 0, 16 )
 1/z_index = 0
 
 [sub_resource type="TileSet" id=52]
-0/name = "Housing Roof"
+0/name = "Roofing"
 0/texture = ExtResource( 11 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )

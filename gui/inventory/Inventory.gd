@@ -21,6 +21,9 @@ func _ready():
 	add_item(Items.REVOLVER)
 	add_item(Items.BULLET, 12)
 	add_item(Items.FENCE, 32)
+	add_item(Items.WALL, 64)
+	add_item(Items.FLOORING, 64)
+	add_item(Items.ROOFING, 64)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -7,7 +7,7 @@ signal time_changed(time)
 
 
 # Declare member variables here. Examples:
-export(float) var day_real_time = 1800 # Time in seconds for one full day
+export(float) var day_real_time = 18000 # Time in seconds for one full day
 
 # Modulate colours
 export(Color) var dawn_color = Color(0.86, 0.70, 0.70, 1.0)
@@ -32,6 +32,7 @@ var ticks_per_day
 var transition_duration
 
 var current_cycle
+
 enum Cycle {
 	NIGHT,
 	DAWN,
@@ -60,6 +61,8 @@ export(float) var state_transition_duration = 1 # Time in-game hours between col
 func _ready():
 	ticks_per_day = day_real_time / 24
 	transition_duration = (ticks_per_day * state_transition_duration) / 60
+	
+	set_hour(6)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -72,7 +75,7 @@ func _physics_process(_delta):
 	_handle_date()
 	
 	time_ticks += 1
-	
+
 
 func _handle_time():
 	time['hour'] = int(time_ticks / ticks_per_day)
@@ -139,3 +142,8 @@ func get_season():
 		return "Winter"
 	else:
 		return ""
+
+
+func set_hour(hours):
+	time_ticks = (hours * ticks_per_day)
+	_handle_time()

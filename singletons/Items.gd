@@ -41,6 +41,9 @@ enum {
 	MINED_GOLD,
 	RAW_COAL,
 	COAL,
+	FLOORING,
+	WALL,
+	ROOFING,
 }
 
 enum ItemType {
@@ -56,6 +59,8 @@ enum ItemType {
 	FOOD,
 	ROCK,
 	ORE,
+	FLOORING,
+	ROOFING,
 }
 
 var TRANSPARENT_TEXTURE_PATH = preload("res://assets/transparent_tile.png")
@@ -67,6 +72,7 @@ var FENCE_TEXTURE_PATH = preload("res://assets/Farming and Mining/Fence.png")
 var FRUITS_VEG_SEED_TEXTURE_PATH = preload("res://assets/Farming and Mining/FruitsVegSeed.png")
 var FURNITURE_TEXTURE_PATH = preload("res://assets/Farming and Mining/Furniture.png")
 var HAIR_TEXTURE_PATH = preload("res://assets/Farming and Mining/Hair.png")
+var HOUSING_TEXTURE_PATH = preload("res://assets/housing_tiles.png")
 var MINERALS_TEXTURE_PATH = preload("res://assets/Farming and Mining/Minerals.png")
 var REFINED_MATERIALS_TEXTURE_PATH = preload("res://assets/Farming and Mining/RefinedMaterials.png")
 var THOUGHT_BUBBLE_TEXTURE_PATH = preload("res://assets/Farming and Mining/ThoughtBubbles.png")
@@ -510,6 +516,42 @@ var item_properties = {
 			"time": 0
 		}
 	},
+	FLOORING: {
+		"name": "Flooring",
+		"texture_file": HOUSING_TEXTURE_PATH,
+		"icon": Rect2(320, 32, 32, 32),
+		"item_type": ItemType.FLOORING,
+		"recipe": {
+			"ingredients": {
+				LOG: 3
+			},
+			"time": 0
+		}
+	},
+	WALL: {
+		"name": "Wall",
+		"texture_file": HOUSING_TEXTURE_PATH,
+		"icon": Rect2(64, 0, 32, 32),
+		"item_type": ItemType.BLOCK,
+		"recipe": {
+			"ingredients": {
+				MINED_STONE: 3
+			},
+			"time": 0
+		}
+	},
+	ROOFING: {
+		"name": "Roofing",
+		"texture_file": HOUSING_TEXTURE_PATH,
+		"icon": Rect2(192, 0, 32, 32),
+		"item_type": ItemType.ROOFING,
+		"recipe": {
+			"ingredients": {
+				MINED_STONE: 3
+			},
+			"time": 0
+		}
+	}
 }
 
 
