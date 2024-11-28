@@ -47,4 +47,4 @@ func _on_day_changed(_day):
 	var new_egg = pickup.instance()
 	new_egg.position = position
 	new_egg.set_item(Items.EGG)
-	get_parent().add_child(new_egg)
+	get_parent().get_node("Pickups").add_child(new_egg)

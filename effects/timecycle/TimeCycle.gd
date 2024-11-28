@@ -41,7 +41,7 @@ enum Cycle {
 }
 
 # Calendar variables
-var day = 0
+var day = 1
 
 enum Season {
 	SPRING,
